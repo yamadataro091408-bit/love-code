@@ -7,10 +7,12 @@ body {
     display: flex; 
     flex-direction: column; 
     align-items: center; 
+    /* 基本は真ん中に寄せる設定（ログイン画面用） */
     justify-content: center; 
     min-height: 100vh; 
     margin: 0; 
     padding: 20px;
+    box-sizing: border-box;
 }
 
 h1, h2 {
@@ -22,60 +24,52 @@ h1, h2 {
 h1 { font-size: 28px; margin-bottom: 30px; }
 h2 { font-size: 22px; margin-bottom: 15px; }
 
+/* ログイン画面のカードを強制的にど真ん中にする魔法 */
+.box { 
+    background: white; 
+    padding: 40px; 
+    border-radius: 40px; 
+    border: 6px solid #fabdc7; 
+    text-align: center; 
+    box-shadow: 0 10px 0 #ffc0cb; 
+    width: 100%;
+    max-width: 300px;
+    margin: auto; /* これが大事！上下左右を自動で埋めて中央にします */
+}
+
 /* ========================================
-   2. レイアウト（横並び ＆ 固定設定）
+   2. メニュー画面（menu.html）用のレイアウト
    ======================================== */
 .main-layout {
     display: flex;
     width: 100%;
-    /* max-content ではなく max-width に直してね！ */
     max-width: 1200px; 
     margin-top: 20px;
-    align-items: flex-start;
+    align-items: flex-start; /* メニューは上揃えにする */
 }
 
-/* ★左側のメニューを固定する魔法★ */
 .side-menu {
-    position: sticky; /* スクロールしても画面内に残る */
-    top: 20px;        /* 画面の一番上からどれくらい離すか */
-    flex: 0 0 250px;  /* 幅を250pxで固定 */
-    
-    /* 背景を少し濃いめのピンクにして「メニュー感」を出す */
+    position: sticky; 
+    top: 20px;        
+    flex: 0 0 250px;  
     background-color: #ffe4ed; 
     padding: 30px 20px;
     border-radius: 40px;
     border: 4px solid #fabdc7;
-    box-shadow: 4px 4px 0px #ffc0cb; /* ちょっと立体的に */
+    box-shadow: 4px 4px 0px #ffc0cb;
+    box-sizing: border-box; /* 枠からはみ出さない魔法 */
 }
 
-/* 右側のメインエリアに左との隙間を作る */
 .content-area {
     flex: 1;
-    margin-left: 40px; /* メニューとの間にしっかり余裕を！ */
+    margin-left: 40px; 
     background: white;
     padding: 30px;
     border-radius: 40px;
     border: 6px solid #fabdc7;
     box-shadow: 0 10px 0 #ffc0cb;
     min-height: 500px;
-}
-
-/* 📱スマホの時は固定を解除して縦に並べる */
-@media (max-width: 768px) {
-    .main-layout {
-        flex-direction: column;
-        align-items: center;
-    }
-    .side-menu {
-        position: static; /* 固定を解除 */
-        max-width: 100%;
-        width: 100%;
-        margin-bottom: 20px;
-    }
-    .content-area {
-        margin-left: 0;
-        width: 100%;
-    }
+    box-sizing: border-box;
 }
 
 /* ========================================
@@ -89,12 +83,8 @@ h2 { font-size: 22px; margin-bottom: 15px; }
 }
 
 .menu-button {
-    /* これを追加！枠線や余白を「幅」の中に含める魔法です */
     box-sizing: border-box; 
-    
-    /* 幅を 100% にして、親要素（side-menu）の中に収まるようにします */
     width: 100%; 
-    
     padding: 15px;
     background-color: white; 
     border: 4px solid #fabdc7; 
@@ -115,7 +105,7 @@ h2 { font-size: 22px; margin-bottom: 15px; }
 .menu-button:hover {
     transform: translateY(3px); 
     box-shadow: 0 3px 0 #ffc0cb; 
-    background-color: #fff0f6; 
+    background-color: #fff0f6;
 }
 
 /* ========================================
@@ -141,14 +131,12 @@ h2 { font-size: 22px; margin-bottom: 15px; }
     font-size: 16px;
 }
 
-/* 今日の日付 */
 .today {
     background-color: #fff0f6;
     border: 2px solid #ff85a1;
     color: #ff85a1 !important;
 }
 
-/* ハートマークがつく日の設定 */
 .date-day {
     position: relative;
     color: #ff6080 !important;
@@ -162,7 +150,7 @@ h2 { font-size: 22px; margin-bottom: 15px; }
 }
 
 /* ========================================
-   5. カウントダウンのデザイン
+   5. カウントダウン ＆ 入力欄 デザイン
    ======================================== */
 .countdown-container {
     margin-top: 25px;
@@ -181,9 +169,43 @@ h2 { font-size: 22px; margin-bottom: 15px; }
     margin: 5px 0;
 }
 
+input { 
+    width: 85%; 
+    padding: 12px; 
+    border-radius: 20px; 
+    border: 3px solid #fabdc7; 
+    margin: 15px 0 5px 0; 
+    text-align: center; 
+    font-size: 16px; 
+}
+
+input:focus {
+    outline: none; 
+    border: 3px solid #d7bdfa; 
+    box-shadow: 0 0 10px #d7bdfa; 
+}
+
+.hint-text {
+    font-size: 14px;
+    color: #ffc0cb;
+    opacity: 0.8;
+}
+
+button { 
+    background: #ff85a1; 
+    color: white; 
+    border: none; 
+    padding: 12px 30px; 
+    border-radius: 25px; 
+    cursor: pointer; 
+    font-weight: bold; 
+    font-size: 16px; 
+    transition: 0.2s; 
+}
+
 /* 📱スマホ用調整 */
 @media (max-width: 768px) {
     .main-layout { flex-direction: column; align-items: center; }
-    .side-menu { max-width: 100%; order: 1; }
-    .content-area { width: 100%; order: 2; box-sizing: border-box; }
+    .side-menu { max-width: 100%; margin-bottom: 20px; }
+    .content-area { margin-left: 0; width: 100%; }
 }
