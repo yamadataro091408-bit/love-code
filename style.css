@@ -184,8 +184,8 @@ h2 {
 
     /* メインエリアの余白を整理 */
     .content-area {
-        /* 左：メニュー分(120px)+隙間15px、右：15px の余白を固定 */
-        margin: 10px 15px 10px 135px !important; 
+        /* 左：メニュー分(120px)+隙間20px、右：20px の余白を固定 */
+        margin: 10px 20px 10px 135px !important; 
         padding: 0;
         display: flex;
         flex-direction: column;
