@@ -172,6 +172,9 @@ h2 {
 /* ========================================
    3. スマホ・画面を狭めた時の調整（余白たっぷり版！）
    ======================================== */
+/* ========================================
+   3. スマホ・画面を狭めた時の調整（修正版！）
+   ======================================== */
 @media (max-width: 768px) {
     h1 { font-size: 20px; height: 60px; }
     .main-layout { margin-top: 60px; }
@@ -182,36 +185,55 @@ h2 {
         padding: 10px 5px;
     }
 
+    /* メインエリアの余白を整理 */
     .content-area {
-        /* 左：メニュー分(120px)＋隙間10px、右：しっかり15pxの余白を確保 */
-        margin: 10px 15px 10px 130px !important; 
-        padding: 0; 
-        display: block; /* 縦並びを確実に */
+        /* 左：メニュー分(120px)+隙間15px、右：15px の余白を固定 */
+        margin: 10px 15px 10px 135px !important; 
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* カードを中央に寄せる */
     }
 
+    /* カードを画面幅いっぱいにしつつ、親要素のmarginで余白を作る */
     .card {
-        /* content-areaの幅いっぱいにしつつ、marginの効果で左右に隙間ができる */
-        width: 100%; 
+        width: 100%;
         max-width: 100%;
+        margin-left: 0;
+        margin-right: 0;
         padding: 15px;
-        margin-bottom: 15px;
-        border-radius: 20px;
-        box-sizing: border-box; /* パディングを含めた計算にする */
     }
 
-    .input-group {
-        flex-direction: column; /* スマホでは入力欄とボタンを縦に並べて余裕を持たせる */
-        gap: 8px;
-    }
-
-    #date-picker, #memo-input {
-        width: 100% !important; /* スマホでは幅いっぱいに */
+    .menu-button {
+        font-size: 11px;
+        padding: 10px 4px;
     }
 
     .calendar-table td, .calendar-table th {
-        font-size: 13px;
+        font-size: 13px; /* カレンダーがはみ出さないよう少し小さく */
         padding: 4px 1px;
     }
+}
+
+/* ========================================
+   入力欄の文字色をピンクで完全統一
+   ======================================== */
+/* 入力した文字、日付の数字、プレースホルダーすべて */
+input[type="text"],
+input[type="date"],
+input[type="date"]::-webkit-datetime-edit,
+input[type="date"]::-webkit-datetime-edit-fields-wrapper,
+input[type="date"]::-webkit-datetime-edit-text,
+input[type="date"]::-webkit-datetime-edit-month-field,
+input[type="date"]::-webkit-datetime-edit-day-field,
+input[type="date"]::-webkit-datetime-edit-year-field {
+    color: #ff85a1 !important;
+}
+
+/* 「場所を入力してね」などのヒント文字 */
+input::placeholder {
+    color: #ffb7c5 !important;
+    opacity: 1;
 }
 
 /* ========================================
