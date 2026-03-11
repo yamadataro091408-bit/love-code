@@ -170,7 +170,7 @@ h2 {
 }
 
 /* ========================================
-   3. スマホ・画面を狭めた時の調整（1つにまとめました！）
+   3. スマホ・画面を狭めた時の調整（修正版！）
    ======================================== */
 @media (max-width: 768px) {
     h1 { font-size: 20px; height: 60px; }
@@ -178,14 +178,27 @@ h2 {
 
     .side-menu {
         top: 60px;
-        width: 120px; /* スマホではメニューを細く */
+        width: 120px; 
         padding: 10px 5px;
     }
 
+    /* メインエリアの余白を整理 */
     .content-area {
-        margin: 10px 10px 10px 130px; /* メニュー(120px)+隙間(10px) */
+        /* 左：メニュー分(120px)+隙間15px、右：15px の余白を固定 */
+        margin: 10px 15px 10px 135px !important; 
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* カードを中央に寄せる */
+    }
+
+    /* カードを画面幅いっぱいにしつつ、親要素のmarginで余白を作る */
+    .card {
+        width: 100%;
+        max-width: 100%;
+        margin-left: 0;
+        margin-right: 0;
         padding: 15px;
-        border-width: 4px;
     }
 
     .menu-button {
@@ -194,9 +207,30 @@ h2 {
     }
 
     .calendar-table td, .calendar-table th {
-        font-size: 12px;
-        padding: 5px 1px;
+        font-size: 13px; /* カレンダーがはみ出さないよう少し小さく */
+        padding: 4px 1px;
     }
+}
+
+/* ========================================
+   入力欄の文字色をピンクで完全統一
+   ======================================== */
+/* 入力した文字、日付の数字、プレースホルダーすべて */
+input[type="text"],
+input[type="date"],
+input[type="date"]::-webkit-datetime-edit,
+input[type="date"]::-webkit-datetime-edit-fields-wrapper,
+input[type="date"]::-webkit-datetime-edit-text,
+input[type="date"]::-webkit-datetime-edit-month-field,
+input[type="date"]::-webkit-datetime-edit-day-field,
+input[type="date"]::-webkit-datetime-edit-year-field {
+    color: #ff85a1 !important;
+}
+
+/* 「場所を入力してね」などのヒント文字 */
+input::placeholder {
+    color: #ffb7c5 !important;
+    opacity: 1;
 }
 
 /* ========================================
@@ -236,7 +270,8 @@ h2 {
     border-radius: 8px; 
     color: #555; 
     font-weight: bold; 
-
+    position: relative; /* ★これが必要！ハートの基準位置になります */
+    z-index: 1;         /* 数字を上に */
 }
 
 .today {
@@ -245,13 +280,25 @@ h2 {
     color: #ff85a1 !important; 
 }
 
-.date-day::after { 
-    content: "💗"; 
-    position: absolute; 
-    top: -5px; 
-    right: -2px; 
-    font-size: 12px; 
+.date-day {
+    background-color: transparent !important; 
+    color: #ff85a1 !important;
 }
+
+.date-day::after {
+    content: "💗";
+    position: absolute;
+    top: 50%;           /* 真ん中に配置 */
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    font-size: 28px;    /* ハートのサイズ */
+    opacity: 0.4;       /* 少し透かして数字を見やすく */
+    z-index: -1;        /* ★数字の背面に配置 */
+    line-height: 1;
+}
+
+.sat { color: #5dade2 !important; }
+.sun { color: #ec7063 !important; }
 
 .countdown-container {
     margin-top: 0;      /* カード内の余白をリセット */
@@ -350,4 +397,74 @@ input[type="password"]:focus {
     border-radius: 20px;
     border: 2px solid #fabdc7;
     padding: 10px;
+}
+
+/* ========================================
+   入力欄とボタンの統一デザイン（おそろい！）
+   ======================================== */
+
+/* メモ入力(text)と日付入力(date)をまとめて可愛く */
+input[type="text"],
+input[type="date"] {
+    border: 2px solid #fabdc7; /* ピンクの細い枠線 */
+    border-radius: 20px;       /* 角を丸く */
+    padding: 10px;
+    outline: none;             /* クリック時の黒枠を消す */
+    background-color: white;   /* 背景は白 */
+    color: #ff85a1;            /* 文字色を可愛いピンクに */
+    font-family: 'Kosugi Maru', sans-serif;
+    text-align: center;        /* 文字を真ん中に */
+    transition: 0.3s;
+    box-sizing: border-box;
+    font-size: 14px;
+    color: #ff85a1 !important; /* 入力した文字色 */
+}
+
+/* 入力欄をクリックした時 */
+input[type="text"]:focus,
+input[type="date"]:focus {
+    border-color: #ff85a1;
+    box-shadow: 0 0 5px #ffc0cb;
+}
+
+input[type="date"]::-webkit-datetime-edit {
+    color: #ff85a1;
+}
+
+/* 追加ボタン(main-btn)と更新ボタン(main-btn)のデザイン */
+.main-btn, .add-btn {
+    background-color: #ff85a1; /* 濃いピンク */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 0 #ffc0cb; /* 下側のぷっくりした影 */
+    transition: 0.2s;
+    white-space: nowrap;
+}
+
+.main-btn:hover, .add-btn:hover {
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 #ffc0cb;
+}
+
+/* 入力欄とボタンを綺麗に横並びにする設定 */
+.input-group {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+/* デート日入力欄の幅を少し調整 */
+#date-picker {
+    width: 160px; /* 日付が見やすい幅に固定 */
+}
+
+input::placeholder {
+    color: #ffb7c5;
+    opacity: 1; /* ブラウザによる透明化を防止 */
 }

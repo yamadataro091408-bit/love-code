@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu - 二人の秘密基地</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=20260311_final">
 </head>
 <body>
     
@@ -21,77 +21,124 @@
         </div>
 
         <div class="content-area">
+            
             <div class="card">
                 <h2>✈️ 行きたいところメモ</h2>
-                <ul id="memo-list" class="memo-list">
-                    <li class="memo-item">サンリオピューロランド 🎀</li>
-                </ul>
-                <div class="memo-input-group">
+                <ul id="memo-list" class="memo-list"></ul>
+                <div class="input-group">
                     <input type="text" id="memo-input" placeholder="場所を入力してね">
-                    <button class="add-btn" onclick="addMemo()">追加</button>
+                    <button class="main-btn" onclick="addMemo()">追加</button>
                 </div>
             </div>
 
             <div class="card">
-                <div class="countdown-container">
-                    <span style="color: #888; font-size: 14px;">次のデートまで</span>
-                    <span class="countdown-number">あと <span id="days-left">--</span> 日</span>
-                    <span style="font-size: 13px; color: #ff85a1;">楽しみだねっ！✨</span>
+                <div class="countdown-container" style="text-align: center;">
+                    <p style="color: #888; margin: 0; font-size: 14px;">次のデートまで</p>
+                    <div class="countdown-number">あと <span id="days-left">--</span> 日</div>
+                    <p style="color: #ff85a1; font-weight: bold; margin-bottom: 20px;">楽しみだねっ！✨</p>
+                    
+                    <div style="margin-top: 10px; border-top: 2px dashed #ffe4ed; padding-top: 20px;">
+                        <p style="font-size: 14px; color: #ff85a1; font-weight: bold; margin-bottom: 10px;">デートの日を教えてね👇</p>
+                        <div class="input-group">
+                            <input type="date" id="date-picker">
+                            <button class="main-btn" onclick="updateNextDate()">更新</button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <div class="card">
-                <h2 id="calendar-month">2026年 --月</h2>
-                <table class="calendar-table">
-                    <thead>
-                        <tr>
-                            <th>日</th><th>月</th><th>火</th><th>水</th><th>木</th><th>金</th><th>土</th>
-                        </tr>
-                    </thead>
-                    <tbody id="calendar-body"></tbody>
-                </table>
+                <div class="calendar-wrapper" style="display: flex; gap: 30px; flex-wrap: wrap; justify-content: center;">
+                    <div style="flex: 1; min-width: 280px; max-width: 400px;">
+                        <h2 id="calendar-month-1">--月</h2>
+                        <table class="calendar-table">
+                            <thead>
+                                <tr>
+                                    <th class="sun">日</th><th>月</th><th>火</th><th>水</th><th>木</th><th>金</th><th class="sat">土</th>
+                                </tr>
+                            </thead>
+                            <tbody id="calendar-body-1"></tbody>
+                        </table>
+                    </div>
+                    <div style="flex: 1; min-width: 280px; max-width: 400px;">
+                        <h2 id="calendar-month-2">--月</h2>
+                        <table class="calendar-table">
+                            <thead>
+                                <tr>
+                                    <th class="sun">日</th><th>月</th><th>火</th><th>水</th><th>木</th><th>金</th><th class="sat">土</th>
+                                </tr>
+                            </thead>
+                            <tbody id="calendar-body-2"></tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
+
+            <div style="font-size: 40px; margin-top: 20px; text-align: center; width: 100%;">🐰 🎀 🐻</div>
         </div>
     </div>
-    
-    <div style="font-size: 40px; margin-top: 30px; text-align: center;">🐰 🎀 🐻</div>
 
     <script>
-        // 【編集用】次のデートの日付
-        const nextDateStr = "2026-03-25"; 
-        
+        let nextDateStr = localStorage.getItem('nextDate') || ""; 
+
         function init() {
-            const nextDate = new Date(nextDateStr);
+            document.getElementById('date-picker').value = nextDateStr;
             const now = new Date();
+            const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
             
-            // 1. カウントダウン計算
-            const diff = nextDate - now;
-            const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
-            document.getElementById("days-left").innerText = days > 0 ? days : 0;
+            let nextDate = new Date();
+            if (nextDateStr) {
+                nextDate = new Date(nextDateStr);
+            }
+            nextDate.setHours(0, 0, 0, 0); 
 
-            // 2. カレンダー作成
-            const year = now.getFullYear();
-            const month = now.getMonth();
-            document.getElementById("calendar-month").innerText = `${year}年 ${month + 1}月`;
+            const diffTime = nextDate - today;
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            document.getElementById("days-left").innerText = diffDays > 0 ? diffDays : 0;
 
+            createCalendar(today.getFullYear(), today.getMonth(), "calendar-month-1", "calendar-body-1", today, nextDate);
+            const nextMonthDate = new Date(today.getFullYear(), today.getMonth() + 1, 1);
+            createCalendar(nextMonthDate.getFullYear(), nextMonthDate.getMonth(), "calendar-month-2", "calendar-body-2", today, nextDate);
+            renderMemos();
+        }
+
+        function updateNextDate() {
+            const newDate = document.getElementById('date-picker').value;
+            if (newDate) {
+                localStorage.setItem('nextDate', newDate);
+                nextDateStr = newDate;
+                init(); 
+                alert("デートの日を保存したよ！💗");
+            }
+        }
+
+        function createCalendar(year, month, titleId, bodyId, today, nextDate) {
+            document.getElementById(titleId).innerText = `${year}年 ${month + 1}月`;
             const firstDay = new Date(year, month, 1).getDay();
             const lastDate = new Date(year, month + 1, 0).getDate();
-            const tbl = document.getElementById("calendar-body");
+            const tbl = document.getElementById(bodyId);
+            tbl.innerHTML = "";
 
             let date = 1;
             for (let i = 0; i < 6; i++) {
                 let row = document.createElement("tr");
                 for (let j = 0; j < 7; j++) {
                     let cell = document.createElement("td");
+                    if (j === 0) cell.classList.add("sun");
+                    if (j === 6) cell.classList.add("sat");
+
                     if (i === 0 && j < firstDay) {
                         cell.innerText = "";
                     } else if (date > lastDate) {
-                        break;
+                        cell.innerText = "";
                     } else {
-                        cell.innerText = date;
-                        if (date === now.getDate()) cell.classList.add("today");
-                        if (date === nextDate.getDate() && month === nextDate.getMonth()) {
+                        const dayValue = date;
+                        cell.innerText = dayValue;
+                        if (dayValue === nextDate.getDate() && month === nextDate.getMonth() && year === nextDate.getFullYear()) {
                             cell.classList.add("date-day");
+                        } 
+                        if (dayValue === today.getDate() && month === today.getMonth() && year === today.getFullYear()) {
+                            cell.classList.add("today");
                         }
                         date++;
                     }
@@ -102,17 +149,44 @@
             }
         }
 
-        // メモ追加の魔法
         function addMemo() {
             const input = document.getElementById('memo-input');
             const text = input.value.trim();
             if (text) {
-                const li = document.createElement('li');
-                li.className = 'memo-item';
-                li.innerText = text;
-                document.getElementById('memo-list').appendChild(li);
+                const memos = getStoredMemos();
+                memos.push(text);
+                saveMemos(memos);
+                renderMemos();
                 input.value = ''; 
             }
+        }
+
+        function deleteMemo(index) {
+            const memos = getStoredMemos();
+            memos.splice(index, 1);
+            saveMemos(memos);
+            renderMemos();
+        }
+
+        function getStoredMemos() {
+            const stored = localStorage.getItem('secretMemos');
+            return stored ? JSON.parse(stored) : ["サンリオピューロランド 🎀"];
+        }
+
+        function saveMemos(memos) {
+            localStorage.setItem('secretMemos', JSON.stringify(memos));
+        }
+
+        function renderMemos() {
+            const list = document.getElementById('memo-list');
+            const memos = getStoredMemos();
+            list.innerHTML = ''; 
+            memos.forEach((text, index) => {
+                const li = document.createElement('li');
+                li.className = 'memo-item';
+                li.innerHTML = `<span>${text}</span><span class="delete-btn" onclick="deleteMemo(${index})">❌</span>`;
+                list.appendChild(li);
+            });
         }
 
         init();
