@@ -52,23 +52,24 @@ h2 {
 /* ========================================
    2. レイアウト（隠れ防止 ＆ 可変カレンダー）
    ======================================== */
+/*メインレイアウト*/
 .main-layout {
     display: flex;
     width: 100%;
-    margin-top: 80px; /* 見出しの高さ分空ける */
+    margin-top: 80px;          /* 見出しの高さ分空ける */
     min-height: calc(100vh - 80px);
 }
 
 /* 左メニュー：幅を180pxに固定 */
 .side-menu {
-    position: fixed;
-    top: 80px;
-    left: 0;
-    width: 180px; 
-    height: calc(100vh - 80px);
+    position: fixed;         /*★絶対固定*/
+    top: 80px;               /*★ヘッダー分上開けてる*/
+    left: 0;                 /*★左端にピタッと*/
+    width: 180px;            /*★横幅を180pxに固定 */
+    height: calc(105vh - 80px); 
     background-color: #ffe4ed; 
-    padding: 20px 10px;
-    border-right: 4px solid #fabdc7;
+    padding: 20px 10px;       
+    border-right:4px solid #fabdc7;
     box-sizing: border-box;
     z-index: 1000;
     overflow-y: auto;
@@ -169,9 +170,6 @@ h2 {
     white-space: nowrap;
 }
 
-/* ========================================
-   3. スマホ・画面を狭めた時の調整（余白たっぷり版！）
-   ======================================== */
 /* ========================================
    3. スマホ・画面を狭めた時の調整（修正版！）
    ======================================== */
