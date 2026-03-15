@@ -1,492 +1,387 @@
-/* ========================================
-   1. 全ページ共通のデザイン
-   ======================================== */
-body { 
-    background-color: #fff0f6; 
-    font-family: 'Kosugi Maru', 'Hiragino Kaku Gothic ProN', 'Meiryo', sans-serif; 
-    display: flex; 
-    flex-direction: column; 
-    align-items: center; 
-    min-height: 100vh; 
-    margin: 0; 
-    padding: 0; /* paddingを一旦0にする */
+@charset "UTF-8";
+
+/*ーーーーーーー*/
+/*🟥全ページ🟥*/
+/*ーーーーーーー*/
+
+/*🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷*/
+/*🟦余計な隙間」を全部ゼロにする*/
+* {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
+/*🟦マウスの矢印をハートにする魔法*/
+html, body {
+    /* ネットで拾った可愛いハートの画像（.cur または .png）を指定してね */
+    /* 32pxくらいの小さい画像がおすすめ！ */
+    cursor: url('image/miku01a.ani'), auto;
+}
+
+/*🟦ボタンの上で「指マーク」 */
+button, input, a {
+    cursor: pointer;
+}
+/*🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷*/
+
+/*ーーーーーーーー*/
+/*🟥indx.html🟥*/
+/*ーーーーーーーー*/
+
+/*🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷*/
+/*🟦背景*/
+body.login-page {
+    /*👇背景の色ーーーーーーーーーーーーーーーーーーー👇*/
+    background-color: #ffeff6;
+    /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
+
+    /*👇画面の上下左右、どこにも隙間がないピンクの空間👇*/
+    margin: 0;     /*外側の余白をゼロに*/
+    padding: 0;    /*内側の余白をゼロに*/
+    width: 100%;   /*横幅をいっぱいに*/
+    height: 100vh; /*高さを画面に合わせる*/
+    /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
+
+    /*👇Flexboxー自動で真ん中寄せ・整列ーセットーーー👇*/
+    display: flex;           /*レイアウトの自由な並べ替えできるようになる */
+    flex-direction: column;  /*中身を「縦」に並べる*/
+    justify-content: center; /*★左右のど真ん中に並べる*/
+    align-items: center;     /*★上下のど真ん中に並べる*/
+    padding-top: 20px;       /*箱の内側の上のスキマ（余白）*/
+    padding-bottom: 20px;    /*箱の内側の下のスキマ（余白）*/
+    gap: 0px;                /*各パーツの間のスキマ */
+    /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
+
+    /*👇白い水玉模様（ドット）をつくるーーーーーーーー👇*/
+    /*radial-gradient：円形のグラデーション*/
+    /*#ffffff 20%：白い水玉模様の水玉の部分*/
+    /*transparent 20%：透明な部分。これによって背景のピンクが見える*/
+    background-image: radial-gradient(#ffffff 20%, transparent 20%);
+    background-size: 30px 30px;   /*水玉模様の大きさ 上下、左右*/
+    background-position: center;  /*水玉模様のスタート位置　真ん中から*/
+    background-repeat: repeat;    /*水玉模様を縦にも横にも繰り返す*/
+    background-attachment: fixed; /*画面に固定してスクロールしても動かないようにする*/
+    /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
+}
+/*🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷*/
+
+/*🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷*/
+/*🟦看板（ヘッダー）の中の文字*/
+.header-title {
+    color: white;
+    font-size: 25px;
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace; /* ちょっとレトロなフォント */
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 0px #ff85a1; /* 文字にピンクの影をつけてクッキリ */
+}
+
+/*🟦一番上の看板（ヘッダー）*/
+.top-header {
+    /*👇看板の場所決めーセットーーーーーーーーーーーー👇*/
+    position: fixed; /*画面のその場所にパーツを固定する*/
+    top: 0;
+    left: 0;
+    /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
+
+    /*👇看板の大きさと色ーーーーーーーーーーーーーーー👇*/
+    width: 100%;                         /*看板の横幅*/
+    height: 80px;                        /*看板の高さ*/
+    background-color: #fabdc7;         /*看板の背景色*/
+    border-bottom: 5px double #ffffff; /*看板の下のフチに線を引く*/
+    /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
+
+    /*👇Flexboxー自動で真ん中寄せ・整列ーセットーーー👇*/
+    display: flex;                       /*きれいに並べる*/
+    justify-content: center;             /*★左右のど真ん中に並べる*/
+    align-items: center;                 /*★上下のど真ん中に並べる*/
+    z-index: 1000;                       /*重なり順（手前か奥か） 数字が大きいほど手前*/
+    /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
+}
+
+/*🟦一番下の看板（ヘッダー）*/
+.bottom-header {
+    /*👇看板の場所決めーセットーーーーーーーーーーーー👇*/
+    position: fixed; /*画面のその場所にパーツを固定する*/
+    bottom: 0;
+    left: 0;
+    /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
+
+    /*👇看板の大きさと色ーーーーーーーーーーーーーーー👇*/
+    width: 100%;
+    height: 80px; /* 上のヘッダーと同じ高さにするよ */
+    background-color: #fabdc7;
+    border-top: 5px double #ffffff; /* 💡 上側に白い線を引く */
+    /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
+
+    /*👇Flexboxー自動で真ん中寄せ・整列ーセットーーー👇*/
+    display: flex;                       /*きれいに並べる*/
+    justify-content: center;             /*★左右のど真ん中に並べる*/
+    align-items: center;                 /*★上下のど真ん中に並べる*/
+    z-index: 1000;                       /*重なり順（手前か奥か） 数字が大きいほど手前*/
+    /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
+}
+
+/*🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷*/
+
+/*🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷*/
+/*🟦看板の「下」にレースをつける*/
+.top-lace {
+    /*👇レースの場所決めーセットーーーーーーーーーーー👇*/
+    position: fixed;      /* 画面に固定する魔法 */
+    top: 80px;
+    left: 0;
+    z-index: 1100;        /*重なり順（手前か奥か） 数字が大きいほど手前*/
+    /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
+
+    /*👇レースの見せ方セットーーーーーーーーーーーーー👇*/
+    width: 100%;          /* 横幅いっぱい */
+    height: 50px;         /* レースの高さ*/
+    background-image: url("image/Lace.png");
+    background-repeat: repeat-x; /*レースをX（横）に繰り返す*/
+    background-size: auto 100%;  /*レースの高さを指定したエリアにピッタリ合わせる*/
+    /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
+    
+    transform: scaleY(-1); /*上下に反転*/
+    pointer-events: none; /* マウスが当たってもここには何もないと判断する*/
+}
+
+/*🟦看板の「上」にレースをつける*/
+.bottom-lace {
+    /*👇レースの場所決めーセットーーーーーーーーーーー👇*/
+    position: fixed;      /* 画面に固定する魔法 */
+    bottom: 80px;
+    left: 0;
+    z-index: 1100;        /*重なり順（手前か奥か） 数字が大きいほど手前*/
+    /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
+
+    /*👇レースの見せ方セットーーーーーーーーーーーーー👇*/
+    width: 100%;          /* 横幅いっぱい */
+    height: 50px;         /* レースの高さ*/
+    background-image: url("image/Lace.png");
+    background-repeat: repeat-x; /*レースをX（横）に繰り返す*/
+    background-size: auto 100%;  /*レースの高さを指定したエリアにピッタリ合わせる*/
+    /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
+    
+    pointer-events: none; /* マウスが当たってもここには何もないと判断する*/
+}
+/*🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷*/
+
+/*🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷*/
+/*🟦GIFとリボンのグループ*/
+.gif-ribbon-group {
+    /*👇Flexboxー自動で真ん中寄せ・整列ーセットーーー👇*/
+    display: flex;           /*中身（リボンとGIF）を横に並べる */
+    justify-content: center; /*左右のど真ん中に並べる*/
+    align-items: center;     /*上下のど真ん中に並べる*/
+    gap: 50px;               /*リボンとGIFの間*/
+    /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
+
+    /*👇場所とサイズーーーーーーーーーーーーーーーーー👇*/
+    width: 95%;              /* 画面の端っこにピッタリすぎないサイズ */
+    max-width: 400px;        /* 大きくなりすぎない */
+    margin: 20px auto;       /* 📦 箱そのものを画面の真ん中に置く！ */
+    /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
+}
+
+/*🟦真ん中のGIF*/
+.gif-container {
+    /*👇大きさと死守する設定ーーーーーーーーーーーーー👇*/
+    width: 35vw;       /* 画面の横幅の35%の大きさに！ */
+    max-width: 150px;  /* でも150pxよりは大きくならない */
+    height: 120px;     /* 高さは固定でもOK、または auto にしてみて */
+    flex-shrink: 0;    /* マイメロちゃんは縮まないように死守！ */
+    /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
+
+    /*👇画像の設定ーーーーーーーーーーーーーーーーーー👇*/
+    background-size: contain; /* 枠の中にピッタリ収める */
+    background-repeat: no-repeat; /* 1回だけ表示 */
+    background-position: center; /* 真ん中に置く */
+    /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
+
+    /*👇余白の設定ーーーーーーーーーーーーーーーーーー👇*/
+    /*margin；外側の隙間*/
+    /*padding：内側の隙間*/
+    margin-top: 20px;
+    margin-bottom: 20px;
+    /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
+
+    /*！画像は上下で好きなもの入れられるようにした！*/
+}
+
+/*🟦リボン*/
+.deco-ribbon {
+    /*👇大きさと伸縮の設定ーーーーーーーーーーーーーー👇*/
+    width: 15vw;       /* 画面の横幅の15%の大きさに！ */
+    max-width: 100px;  /* でも60pxよりは大きくならない */
+    height: 60px;      /* 高さは固定でもOK、または auto にしてみて */
+    flex-shrink: 1;    /* 苦しい時は縮んでね！という命令 */
+    /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
+
+    /*👇画像の設定ーーーーーーーーーーーーーーーーーー👇*/
+    background-image: url('image/kawaiiribbon.png');
+    background-size: contain;   /* 画像を箱の中に収める */
+    background-repeat: no-repeat; /* 1つだけ表示する */
+    background-position: center;
+    /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
+
+    /*👇リボンの色を染めてさらに光らせるーーーーーーー👇*/
+    /*sepia(10%)：下地作り*/
+    /*hue-rotate(300deg)：色変えのメイン魔法*/
+    /*saturate(150%)：鮮やかさアップ*/
+    /*drop-shadow(0 0 5px #ffb7ce)：光のベール*/
+    filter: sepia(10%) hue-rotate(300deg) saturate(150%) drop-shadow(0 0 5px #ffb7ce);
+    /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
+}
+/*🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷*/
+
+/*🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷*/
+/*🟦パスワード入力のカード*/
+.login-box {
+    /*👇大きさと場所ーーーーーーーーーーーーーーーーー👇*/
+    width: 90%;                  /* スマホで見た時に画面からはみ出さないように */
+    max-width: 380px;            /* パソコンで見ても大きくなりすぎないように */
+    margin-top: 0px;
+    /*パーツを動かすと周りのパーツもつられて動いちゃうけど自分だけちょっと横にズレることができる*/
+    position: relative;
+    /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
+
+    /*👇見た目の設定ーーーーーーーーーーーーーーーーー👇*/
+    background-color: #ffffff;  /* 白い箱の中の色*/
+    border: 8px double #fabdc7; /* レトロな二重線 */
+    border-radius: 40px;          /* ぐにゃっと丸く */
+     /* ドリームコア風のパキッとした影 */
+    box-shadow: 0 20px 50px rgba(250, 189, 199, 0.5);
+    /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
+
+    /*👇特殊な内枠と隙間ーーーーーーーーーーーーーーー👇*/
+    outline: 4px solid #ffffff;
+    outline-offset: -12px;
+    padding: 30px 15px;           /* 箱の内側のゆとり */
+    text-align: center;           /* 中の文字を全部真ん中に */
+    /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
+}
+
+/*🟦文字*/
 h1 {
+    /*👇色と大きさーーーーーーーーーーーーーーーーーー👇*/
+    color: #ffa3b8;
+    font-weight: bold;
+    /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
+
+    /*👇フォントの設定ーーーーーーーーーーーーーーーー👇*/
+    font-size: 26px;
+    /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
+
+    /*👇下のパーツとの距離ーーーーーーーーーーーーーー👇*/
+    margin-bottom: 30px;
+    /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
+}
+
+/*🟦入力欄*/
+input[type="text"]#pass-field {
+    /*👇入力欄のサイズと色ーーーーーーーーーーーーーー👇*/
+    width: 100%;                 /*.login-boxの横幅いっぱいに広がる*/
+    padding: 15px;               /*入力欄の内側に10pxの間をつくる*/
+    border-radius: 30px;
+    box-sizing: border-box; /* 💡 横幅100%でも、はみ出さないように守るお守り */
+    /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
+
+    /*👇文字と入力設定ーーーーーーーーーーーーーーーー👇*/
+    font-size: 16px;             /**入力する文字の大きさ*/
+    text-align: center;
+    outline: none;               /* クリックした時の青い枠線を消すよ */
+    -webkit-text-security: disc; /* パスワード入力を●にする魔法（WebKitブラウザ用） */
+    ime-mode: active;      /* 日本語入力を最初からオンにする設定 */
+    /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
+
+    /*👇入力欄色ーーーーーーーーーーーーーーーーーーー👇*/
+    background-color: #ffffff; /*入力欄の中身を白く*/
+    border: 3px solid #fabdc7; /* 点線にして手作り感を出すよ */
+    color: #ff85a1;            /*入力欄の縁の色*/
+    /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
+}
+
+/*💖入力ボタン*/
+#login-btn {
+    width: 25%;                     /*ボタンの横幅*/
+    background-color: #fabdc7;
+    font-size: 20px;                /*文字の大きさ*/
+    font-weight: bold;              /*文字の太さ*/
+    border: none;                   /*ブラウザが勝手につける黒い枠線を消す*/
+    border-radius: 40px;            /*角を丸くする*/
+    box-shadow: 0 8px 0 #ffa3b8;  /*立体的な厚み */
+    transition: 0.1s;               /*ボタンを押したり離したりした時の動き*/
+    margin-top: 20px;
+    padding:5px;                    /*文字とフチの間のゆとり*/
+    color: white;                 /*文字の色*/
+    cursor: pointer;                /* マウスを乗せると指マークになる */
+}
+
+/*💖ボタンを押したら沈む*/
+#login-btn:active {
+    transform: translateY(4px);
+    box-shadow: 0 2px 0 #e8a2af;
+}
+
+/*💖ヒントの文字*/
+.hint {
+    color: #ffb7ce;
+    font-size: 14px;
+}
+/*🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷*/
+
+/*ーーーーー*/
+/*home.html*/
+/*ーーーーー*/
+
+/*🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷*/
+/*💖背景*/
+body.home-page {
+    background-color: #ffeff6;
+
+    /*👇画面の上下左右、どこにも隙間がない空間👇*/
+    margin: 0;     /*外側の余白をゼロに*/
+    padding: 0;    /*内側の余白をゼロに*/
+    width: 100%;   /*横幅をいっぱいに*/
+    height: 100vh; /*高さを画面に合わせる*/
+    /*👆ーーーーーーーーーーーーーーーーーーー👆*/
+
+    /*👇Flexboxー自動で真ん中寄せ・整列ーーー👇*/
+    display: flex;           /*レイアウトの自由な並べ替えできるようになる */
+    flex-direction: column;   /* 💡 中身を「縦」に並べる魔法 */
+    justify-content: center; /*左右（横）のど真ん中に並べる*/
+    align-items: center;     /*上下（縦）のど真ん中に並べる*/
+    padding-top: 20px;
+    align-items: center;     /*上下（縦）のど真ん中に並べる*/ 
+    gap: 0px;               /* 💡 各パーツの間のスキマ */
+    /*👆ーーーーーーーーーーーーーーーーーーー👆*/
+}
+
+/* 💖一番上の看板（ヘッダー）*/
+.home-top-header {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 80px;
-    margin: 0;
+    height: 80px; 
+    background-color: #fabdc7;
+    border-bottom: 5px solid #ffffff; 
     display: flex;
+    justify-content: flex-start;
+    /* ⭐ 文字が端っこにぶつからないように左側にスキマを作る */
+    padding-left: 20px;
     align-items: center;
-    justify-content: center;
-    background-color: #fff0f6;
-    z-index: 2000;
-    font-size: 28px;
-    color: #ff85a1;
-    text-shadow: 1px 1px 0px #ffffff;
-}
-
-h2 {
-    color: #ff85a1;
-    font-size: 22px;
-    margin-bottom: 15px;
-    text-align: center;
-}
-
-.box { 
-    background: white; 
-    padding: 40px; 
-    border-radius: 40px; 
-    border: 6px solid #fabdc7; 
-    text-align: center; 
-    box-shadow: 0 10px 0 #ffc0cb; 
-    width: 100%;
-    max-width: 300px;
-    margin: auto; /* これが大事！上下左右を自動で埋めて中央にします */
-}
-
-/* ========================================
-   2. レイアウト（隠れ防止 ＆ 可変カレンダー）
-   ======================================== */
-/*メインレイアウト*/
-.main-layout {
-    display: flex;
-    width: 100%;
-    margin-top: 80px;          /* 見出しの高さ分空ける */
-    min-height: calc(100vh - 80px);
-}
-
-/* 左メニュー：幅を180pxに固定 */
-.side-menu {
-    position: fixed;         /*★絶対固定*/
-    top: 80px;               /*★ヘッダー分上開けてる*/
-    left: 0;                 /*★左端にピタッと*/
-    width: 180px;            /*★横幅を180pxに固定 */
-    height: calc(105vh - 80px); 
-    background-color: #ffe4ed; 
-    padding: 20px 10px;       
-    border-right:4px solid #fabdc7;
-    box-sizing: border-box;
     z-index: 1000;
-    overflow-y: auto;
 }
 
-/* メインエリア：メニューの幅と同じ分(180px)だけ左を空ける */
-.content-area {
-    flex: 1;
-    margin-left: 180px; 
-    padding: 20px;
-    background: transparent; /* ★背景を透明にする */
-    border: none;            /* ★枠線を消す */
-    box-shadow: none;        /* ★影を消す */
-    box-sizing: border-box;
-    margin: 10px 20px 10px 200px; 
-}
-
-.calendar-table {
-    width: 100%; /* ★画面が広ければカレンダーも広がる */
-    border-collapse: collapse;
-    table-layout: fixed; /* ★列の幅を均等にする */
-}
-
-/* 2. カレンダーの日付セルの高さを詰めめる */
-.calendar-table td {
-    text-align: center;
-    padding: 5px 2px; /* ★ 10pxから5pxに減らしました */
-    border-radius: 8px;
-    color: #555;
-    font-weight: bold;
-    line-height: 1.2; /* ★ 行間を少し詰めてさらにコンパクトに */
-}
-
-/* 3. カレンダーの曜日（月火水...）の高さも詰める */
-.calendar-table th {
-    color: #ff85a1;
-    padding: 5px; /* ★ 10pxから5pxに */
-    font-size: 14px;
-}
-
-/* カードの共通デザイン */
-.card {
-    background: white;
-    border-radius: 30px;
-    border: 4px solid #fabdc7;
-    box-shadow: 0 8px 0 #ffc0cb;
-    padding: 20px;
-    margin-bottom: 20px;
-    box-sizing: border-box;
-    width: 100%; /* 横幅いっぱいに広がる */
-}
-
-/* カレンダーカード専用 */
-.calendar-card {
-    padding: 15px 10px;
-}
-
-/* 行きたいところ（メモ）リストのデザイン */
-.memo-list {
-    list-style: none;
-    padding: 0;
-    margin: 10px 0;
-    text-align: left;
-}
-
-.memo-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px;
-    border-bottom: 2px dashed #ffe4ed;
-    color: #555;
-    font-weight: bold;
-}
-
-.memo-item::before {
-    content: "✈️";
-}
-
-/* 入力欄をカードに馴染ませる */
-.memo-input-group {
-    display: flex;
-    gap: 8px;
-    margin-top: 15px;
-}
-
-.memo-input-group input {
-    margin: 0;
-    flex: 1;
-    padding: 10px;
-    font-size: 14px;
-    border-radius: 15px;
-}
-
-.add-btn {
-    padding: 8px 15px;
-    font-size: 14px;
-    white-space: nowrap;
-}
-
-/* ========================================
-   3. スマホ・画面を狭めた時の調整（修正版！）
-   ======================================== */
-@media (max-width: 768px) {
-    h1 { font-size: 20px; height: 60px; }
-    .main-layout { margin-top: 60px; }
-
-    .side-menu {
-        top: 60px;
-        width: 120px; 
-        padding: 10px 5px;
-    }
-
-    /* メインエリアの余白を整理 */
-    .content-area {
-        /* 左：メニュー分(120px)+隙間15px、右：15px の余白を固定 */
-        margin: 10px 15px 10px 135px !important; 
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center; /* カードを中央に寄せる */
-    }
-
-    /* カードを画面幅いっぱいにしつつ、親要素のmarginで余白を作る */
-    .card {
-        width: 100%;
-        max-width: 100%;
-        margin-left: 0;
-        margin-right: 0;
-        padding: 15px;
-    }
-
-    .menu-button {
-        font-size: 11px;
-        padding: 10px 4px;
-    }
-
-    .calendar-table td, .calendar-table th {
-        font-size: 13px; /* カレンダーがはみ出さないよう少し小さく */
-        padding: 4px 1px;
-    }
-}
-
-/* ========================================
-   入力欄の文字色をピンクで完全統一
-   ======================================== */
-/* 入力した文字、日付の数字、プレースホルダーすべて */
-input[type="text"],
-input[type="date"],
-input[type="date"]::-webkit-datetime-edit,
-input[type="date"]::-webkit-datetime-edit-fields-wrapper,
-input[type="date"]::-webkit-datetime-edit-text,
-input[type="date"]::-webkit-datetime-edit-month-field,
-input[type="date"]::-webkit-datetime-edit-day-field,
-input[type="date"]::-webkit-datetime-edit-year-field {
-    color: #ff85a1 !important;
-}
-
-/* 「場所を入力してね」などのヒント文字 */
-input::placeholder {
-    color: #ffb7c5 !important;
-    opacity: 1;
-}
-
-/* ========================================
-   入力欄の文字色をピンクで完全統一
-   ======================================== */
-/* 入力した文字、日付の数字、プレースホルダーすべて */
-input[type="text"],
-input[type="date"],
-input[type="date"]::-webkit-datetime-edit,
-input[type="date"]::-webkit-datetime-edit-fields-wrapper,
-input[type="date"]::-webkit-datetime-edit-text,
-input[type="date"]::-webkit-datetime-edit-month-field,
-input[type="date"]::-webkit-datetime-edit-day-field,
-input[type="date"]::-webkit-datetime-edit-year-field {
-    color: #ff85a1 !important;
-}
-
-/* 「場所を入力してね」などのヒント文字 */
-input::placeholder {
-    color: #ffb7c5 !important;
-    opacity: 1;
-}
-
-/* ========================================
-   4. パーツのデザイン（ボタンなど）
-   ======================================== */
-.menu-container { 
-    display: flex; 
-    flex-direction: column; 
-    gap: 10px; 
-}
-
-.menu-button {
-    background-color: white; 
-    border: 3px solid #fabdc7; 
-    border-radius: 20px; 
-    text-decoration: none; 
-    color: #ff85a1; 
-    font-weight: bold;
-    padding: 12px;
-    text-align: center;
-    box-shadow: 0 4px 0 #ffc0cb; 
-    transition: 0.2s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-}
-
-.menu-button:hover { 
-    transform: translateY(2px); 
-    box-shadow: 0 2px 0 #ffc0cb; 
-}
-
-.calendar-table td {
-    text-align: center; 
-    padding: 10px 2px; 
-    border-radius: 8px; 
-    color: #555; 
-    font-weight: bold; 
-    position: relative; /* ★これが必要！ハートの基準位置になります */
-    z-index: 1;         /* 数字を上に */
-}
-
-.today {
-    background-color: #fff0f6; 
-    border: 2px solid #ff85a1; 
-    color: #ff85a1 !important; 
-}
-
-.date-day {
-    background-color: transparent !important; 
-    color: #ff85a1 !important;
-}
-
-.date-day::after {
-    content: "💗";
-    position: absolute;
-    top: 50%;           /* 真ん中に配置 */
-    left: 50%;
-    transform: translate(-50%, -50%); 
-    font-size: 28px;    /* ハートのサイズ */
-    opacity: 0.4;       /* 少し透かして数字を見やすく */
-    z-index: -1;        /* ★数字の背面に配置 */
-    line-height: 1;
-}
-
-.sat { color: #5dade2 !important; }
-.sun { color: #ec7063 !important; }
-
-.countdown-container {
-    margin-top: 0;      /* カード内の余白をリセット */
-    padding: 10px 0;    /* 上下に少しだけ隙間を作る */
-    background: transparent; /* 背景を透明にする */
-    border: none;            /* 点線の枠を消す */
-    text-align: center;
-}
-
-.countdown-number { 
-    font-size: 30px; 
-    color: #ff85a1; 
-    font-weight: bold; 
-}
-
-/* ログイン画面用 */
-.box { 
-    background: white; 
-    padding: 40px; 
-    border-radius: 40px; 
-    border: 6px solid #fabdc7; 
-    text-align: center; 
-    box-shadow: 0 10px 0 #ffc0cb; 
-    width: 100%;
-    max-width: 300px;
-    margin: auto;
-}
-
-/* 全ての入力欄（input）のデザインを可愛く上書き */
-input[type="text"], 
-input[type="password"],
-.memo-input-group input {
-    border: 2px solid #fabdc7; /* ピンクの細い枠線にする */
-    border-radius: 15px;       /* 角を丸くする */
-    padding: 10px;
-    outline: none;             /* クリックした時の黒い枠を消す */
-    background-color: white;   /* 背景は白 */
-    color: #555;               /* 文字は優しいグレー */
-    transition: 0.3s;          /* ふわっと変化させる */
-}
-
-/* 入力欄をクリックした時（フォーカス時）のデザイン */
-input[type="text"]:focus,
-input[type="password"]:focus {
-    border-color: #ff85a1;     /* 濃いピンクにする */
-    box-shadow: 0 0 5px #ffc0cb; /* 周りをぼんやり光らせる */
-}
-
-/* ログイン画面のボタンもついでに可愛く */
-.box button {
-    background-color: #ff85a1;
+/*💖看板の中の文字*/
+.home-header-title {
     color: white;
-    border: none;
-    padding: 20px 50px;
-    border-radius: 40px;
+    font-size: 25px;
     font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0 4px 0 #ffc0cb;
-    margin-top: 5px;
-}
-
-/* ヒントテキストを薄く、小さくする */
-.hint-text {
-    font-size: 13px;      /* 少し小さく */
-    color: #ffb7c5;      /* 薄いピンク色にする */
-    opacity: 0.7;        /* さらに透明度を下げてふわっとさせる */
-    margin-top: 10px;    /* 入力欄との隙間を作る */
-}
-
-.box input {
-    text-align: center;
-}
-
-/* 「追加」ボタンをロック画面のボタン風にする */
-.add-btn {
-    background-color: #ff85a1; /* ロック画面と同じ濃いピンク */
-    color: white;              /* 文字は白 */
-    border: none;              /* 枠線を消す */
-    padding: 10px 20px;        /* ボタンの大きさを調整 */
-    border-radius: 40px;       /* ロック画面と同じ丸み */
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0 4px 0 #ffc0cb; /* 下側のぷっくりした影 */
-    transition: 0.2s;          /* 押した時の動きをなめらかに */
-}
-
-/* ボタンを押した時の「ポヨンッ」とする動き */
-.add-btn:hover {
-    transform: translateY(2px);   /* 少し沈む */
-    box-shadow: 0 2px 0 #ffc0cb; /* 影も薄くする */
-}
-
-/* 入力欄の文字も真ん中にして、高さをボタンに合わせる */
-.memo-input-group input {
-    text-align: center;
-    border-radius: 20px;
-    border: 2px solid #fabdc7;
-    padding: 10px;
-}
-
-/* ========================================
-   入力欄とボタンの統一デザイン（おそろい！）
-   ======================================== */
-
-/* メモ入力(text)と日付入力(date)をまとめて可愛く */
-input[type="text"],
-input[type="date"] {
-    border: 2px solid #fabdc7; /* ピンクの細い枠線 */
-    border-radius: 20px;       /* 角を丸く */
-    padding: 10px;
-    outline: none;             /* クリック時の黒枠を消す */
-    background-color: white;   /* 背景は白 */
-    color: #ff85a1;            /* 文字色を可愛いピンクに */
-    font-family: 'Kosugi Maru', sans-serif;
-    text-align: center;        /* 文字を真ん中に */
-    transition: 0.3s;
-    box-sizing: border-box;
-    font-size: 14px;
-    color: #ff85a1 !important; /* 入力した文字色 */
-}
-
-/* 入力欄をクリックした時 */
-input[type="text"]:focus,
-input[type="date"]:focus {
-    border-color: #ff85a1;
-    box-shadow: 0 0 5px #ffc0cb;
-}
-
-input[type="date"]::-webkit-datetime-edit {
-    color: #ff85a1;
-}
-
-/* 追加ボタン(main-btn)と更新ボタン(main-btn)のデザイン */
-.main-btn, .add-btn {
-    background-color: #ff85a1; /* 濃いピンク */
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 40px;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0 4px 0 #ffc0cb; /* 下側のぷっくりした影 */
-    transition: 0.2s;
-    white-space: nowrap;
-}
-
-.main-btn:hover, .add-btn:hover {
-    transform: translateY(2px);
-    box-shadow: 0 2px 0 #ffc0cb;
-}
-
-/* 入力欄とボタンを綺麗に横並びにする設定 */
-.input-group {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    align-items: center;
-    margin-top: 10px;
-}
-
-/* デート日入力欄の幅を少し調整 */
-#date-picker {
-    width: 160px; /* 日付が見やすい幅に固定 */
-}
-
-input::placeholder {
-    color: #ffb7c5;
-    opacity: 1; /* ブラウザによる透明化を防止 */
+    font-family: 'Courier New', Courier, monospace; /* ちょっとレトロなフォント */
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 0px #ff85a1; /* 文字にピンクの影をつけてクッキリ */
 }

@@ -3,18 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OUR SECRET PLACE 💗</title>
+    <title>👀</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-<div id="login-screen" class="box">
-    <h2>💗合言葉を入力してね💗</h2>
-    <input type="text" id="password" placeholder="好きな食べ物">
-    <p class="hint-text">ヒント：ひらがな</p>
-    <br><button class="add-btn" onclick="checkPassword()">開く</button>
-</div>
-<script>
-    // SHA-256を計算する魔法の関数
+
+<body class="login-page">
+    <header class="top-header">
+        <div class="header-content">
+            <span class="sparkle">✨</span>
+            <span class="header-title">Wellcome to My site</span>
+            <span class="sparkle">✨</span>
+        </div>
+        <div class="top-lace"></div></body>
+    </header>
+    <div class="gif-ribbon-group">
+        <div class="deco-ribbon"></div>
+        <div class="gif-container" style="background-image: url('image/mai.gif');"></div>
+        <div class="deco-ribbon"></div>
+    </div>
+    <div class="login-box">
+        <h1>💗合言葉を入力してね💗</h1>
+        <div class="input-area">
+            <input type="text" id="pass-field" placeholder="合言葉をおしえてね">
+            <p class="hint">ヒント：二人が出会った場所は？</p>
+            <button id="login-btn">開く</button>
+        </div>
+    </div>
+    <div class="gif-ribbon-group">
+        <div class="deco-ribbon"></div>
+        <div class="gif-container" style="background-image: url('image/mai.gif');"></div>
+        <div class="deco-ribbon"></div>
+    </div>
+    <div class="bottom-lace"></div></body>
+
+    
+    <script>
+    // 文字列をハッシュ化(SHA-256)する魔法の関数
     async function sha256(text) {
         const msgUint8 = new TextEncoder().encode(text);
         const hashBuffer = await crypto.subtle.digest('SHA-256', msgUint8);
@@ -22,20 +46,23 @@
         return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
     }
 
-    async function checkPassword() {
-        const pass = document.getElementById('password').value;
-        
-        // 入力された文字を暗号に変換する
-        const hashedInput = await sha256(pass);
-        
-        // あなたが生成したSHA-256の暗号と比較
-        const correctHash = "879aecaf4b454fe451d90fad38e87ddcaf811ca30da2268d815cb3407fe7a7b1"; 
-        if(hashedInput === correctHash) { 
-            window.location.href = "menu.html"; 
+    const loginBtn = document.getElementById('login-btn');
+    const passField = document.getElementById('pass-field');
+
+    loginBtn.addEventListener('click', async () => {
+        const inputHash = await sha256(passField.value);
+
+        // ハッシュ化した文字列だよ！
+        const seikaiHash = "879aecaf4b454fe451d90fad38e87ddcaf811ca30da2268d815cb3407fe7a7b1";
+
+        if (inputHash === seikaiHash) {
+            window.location.href = 'home.html';
         } else {
-            alert("ちがうよ！");
+            alert('ちがう（#^ω^）');
+            passField.value='';
         }
-    }
+    });
 </script>
+<div class="bottom-header"></div>
 </body>
 </html>
