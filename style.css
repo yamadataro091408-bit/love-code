@@ -1,15 +1,22 @@
 @charset "UTF-8";
+/*🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷*/
 
 /*ーーーーーーー*/
 /*🟥全ページ🟥*/
 /*ーーーーーーー*/
 
 /*🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷*/
-/*🟦余計な隙間」を全部ゼロにする*/
+/*🟦サイト全体の文字を全部かわいくする魔法*/
 * {
+    /*👇余計な隙間を全部ゼロにするーーーーーーーーーーー👇*/
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
+
+    /*👇フォントを可愛くーーーーーーーーーーーーーーー👇*/
+    font-family: 'M PLUS Rounded 1c', "Hiragino Maru Gothic ProN", "Meiryo", sans-serif;
+    /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
 }
 
 /*🟦マウスの矢印をハートにする魔法*/
@@ -87,7 +94,7 @@ body.login-page {
 
     /*👇看板の大きさと色ーーーーーーーーーーーーーーー👇*/
     width: 100%;                         /*看板の横幅*/
-    height: 80px;                        /*看板の高さ*/
+    height: 50px;                        /*看板の高さ*/
     background-color: #fabdc7;         /*看板の背景色*/
     border-bottom: 5px double #ffffff; /*看板の下のフチに線を引く*/
     /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
@@ -110,7 +117,7 @@ body.login-page {
 
     /*👇看板の大きさと色ーーーーーーーーーーーーーーー👇*/
     width: 100%;
-    height: 80px; /* 上のヘッダーと同じ高さにするよ */
+    height: 50px;
     background-color: #fabdc7;
     border-top: 5px double #ffffff; /* 💡 上側に白い線を引く */
     /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
@@ -130,7 +137,7 @@ body.login-page {
 .top-lace {
     /*👇レースの場所決めーセットーーーーーーーーーーー👇*/
     position: fixed;      /* 画面に固定する魔法 */
-    top: 80px;
+    top: 50px;
     left: 0;
     z-index: 1100;        /*重なり順（手前か奥か） 数字が大きいほど手前*/
     /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
@@ -151,7 +158,7 @@ body.login-page {
 .bottom-lace {
     /*👇レースの場所決めーセットーーーーーーーーーーー👇*/
     position: fixed;      /* 画面に固定する魔法 */
-    bottom: 80px;
+    bottom: 50px;
     left: 0;
     z-index: 1100;        /*重なり順（手前か奥か） 数字が大きいほど手前*/
     /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
@@ -190,7 +197,7 @@ body.login-page {
     /*👇大きさと死守する設定ーーーーーーーーーーーーー👇*/
     width: 35vw;       /* 画面の横幅の35%の大きさに！ */
     max-width: 150px;  /* でも150pxよりは大きくならない */
-    height: 120px;     /* 高さは固定でもOK、または auto にしてみて */
+    height: 100px;     /* 高さは固定でもOK、または auto にしてみて */
     flex-shrink: 0;    /* マイメロちゃんは縮まないように死守！ */
     /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
 
@@ -303,52 +310,69 @@ input[type="text"]#pass-field {
     /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
 }
 
-/*💖入力ボタン*/
+/*🟦入力ボタン*/
 #login-btn {
+    /*👇形とサイズーーーーーーーーーーーーーーーーーー👇*/
     width: 25%;                     /*ボタンの横幅*/
+    padding:5px;                    /*文字とフチの間のゆとり*/
+    border-radius: 40px;            /*角を丸くする*/
+    margin-top: 20px;
+    cursor: pointer;                /* マウスを乗せると指マークになる */
+    /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
+
+    /*👇見た目と立体感ーーーーーーーーーーーーーーーー👇*/
     background-color: #fabdc7;
+    color: white;                 /*文字の色*/
     font-size: 20px;                /*文字の大きさ*/
     font-weight: bold;              /*文字の太さ*/
     border: none;                   /*ブラウザが勝手につける黒い枠線を消す*/
-    border-radius: 40px;            /*角を丸くする*/
     box-shadow: 0 8px 0 #ffa3b8;  /*立体的な厚み */
+    /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
+
+    /*👇押した感覚ーーーーーーーーーーーーーーーーーー👇*/
     transition: 0.1s;               /*ボタンを押したり離したりした時の動き*/
-    margin-top: 20px;
-    padding:5px;                    /*文字とフチの間のゆとり*/
-    color: white;                 /*文字の色*/
-    cursor: pointer;                /* マウスを乗せると指マークになる */
+    /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
 }
 
-/*💖ボタンを押したら沈む*/
+/*🟦ボタンを押したら沈む*/
 #login-btn:active {
-    transform: translateY(4px);
+    /*👇下にずらす設定ーーーーーーーーーーーーーーーー👇*/
+    transform: translateY(4px); /*押した瞬間に4px下に動かす */
+    /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
+
+    /*👇厚みの調整ーーーーーーーーーーーーーーーーーー👇*/
     box-shadow: 0 2px 0 #e8a2af;
+    /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
 }
 
-/*💖ヒントの文字*/
+/*🟦ヒントの文字*/
 .hint {
+    /*👇色とサイズーーーーーーーーーーーーーーーーーー👇*/
     color: #ffb7ce;
     font-size: 14px;
+    /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
 }
 /*🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷*/
 
-/*ーーーーー*/
-/*home.html*/
-/*ーーーーー*/
+/*ーーーーーーーー*/
+/*🟥home.html🟥*/
+/*ーーーーーーーー*/
 
 /*🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷*/
-/*💖背景*/
+/*🟦背景*/
 body.home-page {
+    /*👇背景の色ーーーーーーーーーーーーーーーーーーー👇*/
     background-color: #ffeff6;
+    /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
 
-    /*👇画面の上下左右、どこにも隙間がない空間👇*/
+    /*👇画面の上下左右、どこにも隙間がないピンクの空間👇*/
     margin: 0;     /*外側の余白をゼロに*/
     padding: 0;    /*内側の余白をゼロに*/
     width: 100%;   /*横幅をいっぱいに*/
     height: 100vh; /*高さを画面に合わせる*/
-    /*👆ーーーーーーーーーーーーーーーーーーー👆*/
+    /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
 
-    /*👇Flexboxー自動で真ん中寄せ・整列ーーー👇*/
+    /*👇Flexboxー自動で真ん中寄せ・整列ーセットーーー👇*/
     display: flex;           /*レイアウトの自由な並べ替えできるようになる */
     flex-direction: column;   /* 💡 中身を「縦」に並べる魔法 */
     justify-content: center; /*左右（横）のど真ん中に並べる*/
@@ -356,32 +380,201 @@ body.home-page {
     padding-top: 20px;
     align-items: center;     /*上下（縦）のど真ん中に並べる*/ 
     gap: 0px;               /* 💡 各パーツの間のスキマ */
-    /*👆ーーーーーーーーーーーーーーーーーーー👆*/
+    /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
 }
+/*🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷*/
 
-/* 💖一番上の看板（ヘッダー）*/
-.home-top-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 80px; 
-    background-color: #fabdc7;
-    border-bottom: 5px solid #ffffff; 
-    display: flex;
-    justify-content: flex-start;
-    /* ⭐ 文字が端っこにぶつからないように左側にスキマを作る */
-    padding-left: 20px;
-    align-items: center;
-    z-index: 1000;
-}
-
-/*💖看板の中の文字*/
+/*🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷*/
+/*🟦看板の中の文字*/
 .home-header-title {
+    /*👇文字のスタイルーーーーーーーーーーーーーーーー👇*/
     color: white;
     font-size: 25px;
     font-weight: bold;
     font-family: 'Courier New', Courier, monospace; /* ちょっとレトロなフォント */
     letter-spacing: 2px;
     text-shadow: 2px 2px 0px #ff85a1; /* 文字にピンクの影をつけてクッキリ */
+    /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
+}
+
+/*🟦一番上の看板（ヘッダー）*/
+.home-top-header {
+    /*👇場所の設定ーーーーーーーーーーーーーーーーーー👇*/
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px; 
+    z-index: 1000;
+    /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
+
+    /*👇見た目の設定ーーーーーーーーーーーーーーーーー👇*/
+    background-color: #fabdc7;
+    /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
+
+    /*👇看板（ヘッダー）の文字ーーーーーーーーーーーー👇*/
+    display: flex;
+    justify-content: flex-start; /*左寄せにする*/
+    padding-left: 20px;
+    align-items: center;
+    /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
+
+    /* 下側に「看板と同じ色」の影を出すことで、隙間を塗りつぶすよ */
+    box-shadow: 0 15px 0 #fabdc7;
+}
+
+/* 🟦とろ〜り*/
+.home-top-header::after {
+    content: "";
+    position: absolute;
+
+    /*👇大きさと場所の設定ーーーーーーーーーーーーーー👇*/
+    top: 50px; 
+    left: 0;
+    width: 100%;
+    height: 140px;
+    z-index: -1000;
+    /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/ 
+    
+    /*👇色と形の設定ーーーーーーーーーーーーーーーーー👇*/
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23fabdc7" fill-opacity="1" d="M0,32L12.6,80C25.3,128,51,224,76,266.7C101.1,309,126,299,152,245.3C176.8,192,202,96,227,80C252.6,64,278,128,303,176C328.4,224,354,256,379,229.3C404.2,203,429,117,455,96C480,75,505,117,531,117.3C555.8,117,581,75,606,64C631.6,53,657,75,682,101.3C707.4,128,733,160,758,176C783.2,192,808,192,834,176C858.9,160,884,128,909,96C934.7,64,960,32,985,42.7C1010.5,53,1036,107,1061,133.3C1086.3,160,1112,160,1137,170.7C1162.1,181,1187,203,1213,224C1237.9,245,1263,267,1288,245.3C1313.7,224,1339,160,1364,117.3C1389.5,75,1415,53,1427,42.7L1440,32L1440,0L1427.4,0C1414.7,0,1364,0,1339,0C1313.7,0,1288,0,1263,0C1237.9,0,1213,0,1187,0C1162.1,0,1137,0,1111,0C1086.3,0,1061,0,1035,0C1010.5,0,985,0,960,0C934.7,0,909,0,884,0C859.2,0,834,0,808,0C783.2,0,758,0,732,0C707.4,0,682,0,656,0C631.6,0,606,0,581,0C555.8,0,531,0,505,0C480,0,455,0,429,0C404.2,0,379,0,353,0C328.4,0,303,0,277,0C252.6,0,227,0,202,0C176.8,0,152,0,126,0C101,0,76,0,50,0C25,0,13,0L0,0Z"></path></svg>');
+    background-size: cover;
+    background-position: -27px top;
+    /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
+    
+    /*👇動きの設定ーーーーーーーーーーーーーーーーーー👇*/
+    animation: melt 5s infinite ease-in-out;
+    transform-origin: top;
+    /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
+}
+
+/* 🎬 動きの指示書（上下にゆらゆら） */
+@keyframes melt {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(12px); }
+}
+/*🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷*/
+
+/*🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷*/
+/* 💖 メニューボタンを右側に固定する魔法 */
+/* 💖 MENUボタンを「真っ直ぐなハート」にする魔法 */
+.menu-open-button {
+    position: absolute;
+    right: 5px;
+    top: 90%;
+    transform: translateY(-50%);
+    
+    /* 🎨 大きさを可愛く調整（45pxくらいが看板に合うよ！） */
+    width: 90px;
+    height: 80px;
+    
+    /* 🪄 ハートの形を「画像」として背景にセットする魔法 */
+    /* これなら中身の文字は回転しないよ！ */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="white" d="M12,21.35L10.55,20.03C5.4,15.36 2,12.28 2,8.5C2,5.42 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.09C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.42 22,8.5C22,12.28 18.6,15.36 13.45,20.04L12,21.35Z"/></svg>');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: transparent; /* 背景を透明にしてハートだけ見せる */
+    
+    border: none;
+    cursor: pointer;
+    z-index: 1001;
+    
+    /* 📝 中の文字を真っ直ぐど真ん中に置く */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ff85a1;
+    font-size: 15px; /* 文字を少し小さくして収める */
+    font-weight: bold;
+    padding-bottom: 5px;
+    padding-top: 2px; /* 💡 ハートの形に合わせて少し下に下げると綺麗！ */
+}
+
+/* ポチッと押した時の動き */
+.menu-open-button:active {
+    transform: translateY(-50%) scale(0.9); /* 💡 押すと少し小さくなる可愛い動き */
+}
+
+/* 🌸 メニュー画面（モーダル）の見た目 */
+.menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 239, 246, 0.8); /* 透明感のあるピンク */
+    z-index: 2000;
+    display: none; /* 最初は隠しておく魔法！ */
+    justify-content: center;
+    align-items: center;
+}
+
+/* 🌸 メニューの白い窓 */
+.menu-window {
+    background: white;
+    padding: 30px;
+    border-radius: 40px;
+    border: 8px double #fabdc7;
+    text-align: center;
+    position: relative;
+    width: 85%;
+    max-width: 300px;
+    box-shadow: 0 10px 30px rgba(255, 133, 161, 0.3);
+}
+
+/* 🌸 メニューのタイトルとリスト */
+.menu-title {
+    color: #ff85a1;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.menu-list {
+    list-style: none; /* 点々を消す */
+}
+
+.menu-list li {
+    margin: 15px 0;
+}
+
+.menu-list a {
+    text-decoration: none; /* 下線を消す */
+    color: #ffb7ce;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.3s;
+}
+
+/* 🌸 今いるページの文字を濃くして、前後にハートを出す魔法 */
+.menu-list a.current {
+    color: #ff85a1; /* 文字を少し濃いピンクに */
+}
+
+/* 💡 文字の前にハートを出す設定 */
+.menu-list a.current::before {
+    content: "💗 "; /* ハートを表示 */
+}
+
+/* 💡 文字の後ろにもハートを出したいならこれ！ */
+.menu-list a.current::after {
+    content: " 💗";
+}
+
+.menu-list a:hover {
+    color: #ff85a1; /* マウスを乗せると濃くなる */
+}
+
+/* 🌸 閉じるボタン（×） */
+.close-circle {
+    margin-top: 20px;
+    background: #fabdc7;
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 20px;
+    line-height: 40px;
+    cursor: pointer;
 }
