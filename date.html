@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>date 💗</title>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="date-page">
+<header class="home-top-header">
+    <div class="home-header-content">
+        <span class="home-header-title">らぶめろぅ～</span>
+    </div>
+    <button id="open-menu-btn" class="menu-open-button">MENU</button>
+</header>
+
+<div id="menu-modal" class="menu-overlay">
+    <div class="menu-window">
+        <h2 class="menu-title">Menu</h2>
+        <ul class="menu-list">
+            <li><a href="home.html" class="current">ホーム</a></li>
+            <li><a href="date.html" class="current">次のデート</a></li>
+            <li><a href="#">行きたいところ</a></li>
+            <li><a href="#">思い出</a></li>
+            <li><a href="#">目標</a></li>
+            <li><a href="#">貯金</a></li>
+            <li><a href="#">プロフ</a></li>
+            <li><a href="#">お問い合わせ</a></li>
+        </ul>
+        <button id="close-btn" class="close-circle">×</button>
+    </div>
+</div>
+
+<main class="date-main">
+    <p class="countdown-label">次のデート</p>
+    
+    <div class="countdown-card">
+        <p class="countdown-days"><span id="days-left">--</span>日</p>
+        <div class="booking-inputs">
+            <div class="input-group">
+                <label>Check-in</label>
+                <input type="date" id="check-in">
+            </div>
+            <div class="input-group">
+                <label>Check-out</label>
+                <input type="date" id="check-out">
+            </div>
+        </div>
+        <button onclick="updateCountdown()" class="update-btn" id="update-btn">更新</button>
+        <div class="calendar-wrapper">
+            <div id="calendar-1" class="calendar-box">1月（仮）</div>
+            <div id="calendar-2" class="calendar-box">2月（仮）</div>
+        </div>
+    </div>
+</main>
+
+<div class="bottom-lace"></div>
+<div class="bottom-header"></div>
+
+<script>
+    const openBtn = document.getElementById('open-menu-btn');
+    const closeBtn = document.getElementById('close-btn');
+    const menuModal = document.getElementById('menu-modal');
+
+    openBtn.addEventListener('click', () => { menuModal.style.display = 'flex'; });
+    closeBtn.addEventListener('click', () => { menuModal.style.display = 'none'; });
+
+    menuModal.addEventListener('click', (e) => {
+        if (e.target === menuModal) menuModal.style.display = 'none';
+    });
+
+    // 🌸 カレンダーの中身を自動で作る魔法
+function createCalendar(id, year, month) {
+    const wrapper = document.getElementById(id);
+    if (!wrapper) return;
+
+    const date = new Date(year, month, 1);
+    const monthName = (month + 1) + "月"; // 1月、2月という表示
+    
+    let html = `<h4 style="margin:0 0 10px 0; font-size:14px;">${monthName}</h4>`;
+    html += '<table style="width:100%; border-collapse:collapse; font-size:10px;">';
+    html += '<tr style="color:#ffb7ce;"><td>日</td><td>月</td><td>火</td><td>水</td><td>木</td><td>金</td><td>土</td></tr><tr>';
+
+    // 1日の曜日まで空白を作る
+    for (let i = 0; i < date.getDay(); i++) {
+        html += '<td></td>';
+    }
+
+    // 日にちを埋める
+    const currentMonth = date.getMonth();
+    while (date.getMonth() === currentMonth) {
+        if (date.getDay() === 0 && date.getDate() !== 1) {
+            html += '</tr><tr>';
+        }
+        html += `<td style="padding:4px; font-weight:bold;">${date.getDate()}</td>`;
+        date.setDate(date.getDate() + 1);
+    }
+    html += '</tr></table>';
+    wrapper.innerHTML = html;
+}
+
+// ✨ ページが読み込まれたら実行するよ！
+    window.onload = function() {
+    const today = new Date();
+    // 1つ目の箱に今月、2つ目の箱に翌月を表示
+    createCalendar('calendar-1', today.getFullYear(), today.getMonth());
+    createCalendar('calendar-2', today.getFullYear(), today.getMonth() + 1);
+};
+
+// 🌸 日付のカウントダウンを計算する魔法（これを追加！）
+function updateCountdown() {
+    const checkIn = document.getElementById('check-in').value;
+    if (!checkIn) {
+        alert("日付を選んでね！💗");
+        return;
+    }
+
+    const targetDate = new Date(checkIn);
+    const today = new Date();
+    
+    // 時刻を 00:00:00 にリセットして「日にち」だけで計算するよ
+    today.setHours(0, 0, 0, 0);
+    targetDate.setHours(0, 0, 0, 0);
+
+    // 💡 ミリ秒の差を計算して、日にちに変換！
+    const diffTime = targetDate - today;
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+    const display = document.getElementById('days-left');
+    
+    if (diffDays > 0) {
+        display.innerText = diffDays;
+    } else if (diffDays === 0) {
+        display.innerText = "0 (今日だよ！)";
+    } else {
+        display.innerText = "--";
+        alert("過去の日付になっちゃってるよ💦");
+    }
+}
+</script>
+</body>
+</html>

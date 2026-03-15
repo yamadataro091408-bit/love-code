@@ -210,8 +210,8 @@ body.login-page {
     /*👇余白の設定ーーーーーーーーーーーーーーーーーー👇*/
     /*margin；外側の隙間*/
     /*padding：内側の隙間*/
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 55px;
+    margin-bottom: 55px;
     /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
 
     /*！画像は上下で好きなもの入れられるようにした！*/
@@ -299,7 +299,6 @@ input[type="text"]#pass-field {
     font-size: 16px;             /**入力する文字の大きさ*/
     text-align: center;
     outline: none;               /* クリックした時の青い枠線を消すよ */
-    -webkit-text-security: disc; /* パスワード入力を●にする魔法（WebKitブラウザ用） */
     ime-mode: active;      /* 日本語入力を最初からオンにする設定 */
     /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
 
@@ -350,6 +349,7 @@ input[type="text"]#pass-field {
     /*👇色とサイズーーーーーーーーーーーーーーーーーー👇*/
     color: #ffb7ce;
     font-size: 14px;
+    margin-top: 5px;
     /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
 }
 /*🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷*/
@@ -611,7 +611,7 @@ body.home-page {
     align-items: center;
     
     /* 💡 看板としずくに被らないように、上に大きな通り道を作る */
-    padding-top: 100px; 
+    padding-top: 180px; 
     /* 💡 下の看板にも被らないように余白を作る */
     padding-bottom: 70px; 
 }
@@ -623,8 +623,8 @@ body.home-page {
     border-radius: 12px;
 
     /* 💡 魔法：幅と高さを大きくしたよ！ */
-    width: 320px;  /* 280px から 320px にアップ！ */
-    height: 350px; /* 340px から 400px にアップ！ */
+    width: 400px;  /* 280px から 320px にアップ！ */
+    height: 430px; /* 340px から 400px にアップ！ */
 
     display: flex;
     flex-direction: column;
@@ -638,7 +638,7 @@ body.home-page {
     width: 100%;
     
     /* 💡 魔法：写真部分の高さも 300px にアップ！ */
-    height: 300px; 
+    height: 350px; 
     
     /* 💡 写真を歪ませずにきれいに切り抜く魔法（これは必須！） */
     object-fit: cover; 
@@ -702,4 +702,209 @@ body.home-page {
     color: #ffb7ce;
     font-size: 14px;
     letter-spacing: 2px;
+}
+
+/*ーーーーーーーー*/
+/*🟥date.html🟥*/
+/*ーーーーーーーー*/
+/*🟦背景*/
+body.date-page {
+    /*👇背景の色ーーーーーーーーーーーーーーーーーーー👇*/
+    background-color: #ffeff6;
+    /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
+
+    /*👇画面の上下左右、どこにも隙間がないピンクの空間👇*/
+    margin: 0;     /*外側の余白をゼロに*/
+    padding: 0;    /*内側の余白をゼロに*/
+    width: 100%;   /*横幅をいっぱいに*/
+    height: 100vh; /*高さを画面に合わせる*/
+    /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
+
+    overflow: hidden; /* 💡 画面からはみ出さないように念のためのお守り */
+
+    /*👇Flexboxー自動で真ん中寄せ・整列ーセットーーー👇*/
+    display: flex;           /*レイアウトの自由な並べ替えできるようになる */
+    flex-direction: column;   /* 💡 中身を「縦」に並べる魔法 */
+    justify-content: flex-start; /*左右（横）のど真ん中に並べる*/
+    align-items: center;     /*上下（縦）のど真ん中に並べる*/
+    padding-top: 20px;
+    align-items: center;     /*上下（縦）のど真ん中に並べる*/ 
+    gap: 0px;               /* 💡 各パーツの間のスキマ */
+    /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
+
+    /* 💡 看板としずくに被らないように、上に大きな通り道を作る */
+    padding-top: 130px; 
+    /* 💡 下の看板にも被らないように余白を作る */
+    padding-bottom: 20px;
+
+    /*👇白い水玉模様（ドット）をつくるーーーーーーーー👇*/
+    /*radial-gradient：円形のグラデーション*/
+    /*#ffffff 20%：白い水玉模様の水玉の部分*/
+    /*transparent 20%：透明な部分。これによって背景のピンクが見える*/
+    background-image: radial-gradient(#ffffff 20%, transparent 20%);
+    background-size: 30px 30px;   /*水玉模様の大きさ 上下、左右*/
+    background-position: center;  /*水玉模様のスタート位置　真ん中から*/
+    background-repeat: repeat;    /*水玉模様を縦にも横にも繰り返す*/
+    background-attachment: fixed; /*画面に固定してスクロールしても動かないようにする*/
+    /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
+}
+
+.countdown-label {
+    font-size: 50px; /* 💡 50pxは大きすぎたから、少し小さくしてスペース確保 */
+    margin-top: 40px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+/* 📒 カードの枠を消して、中身の並びだけを整えるよ */
+.countdown-card {
+    background: transparent; /* 💡 背景を透明に！ */
+    border: none;             /* 💡 二重線を消す！ */
+    box-shadow: none;         /* 💡 影も消す！ */
+    
+    width: 95%;
+    max-width: 600px;
+    padding: 0;               /* 余白をゼロにしてスッキリ */
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* 📒 カウントダウン部分 */
+.countdown-days {
+    font-size: 40px; /* 💡 48pxから少しだけ小さく */
+    margin-bottom: 15px;
+}
+
+/* 💡 文字のスタイル */
+.countdown-label { 
+    color: #ffb7ce; 
+    font-weight: bold; 
+}
+
+.countdown-days {
+    color: #ff85a1;
+    font-size: 48px;
+    font-weight: bold;
+}
+
+/* 🏨 ホテル予約風の入力エリア */
+.booking-inputs {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 10px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.input-group { 
+    display: flex; 
+    flex-direction: column; 
+    text-align: left; 
+}
+
+.input-group label { 
+    font-size: 10px; 
+    color: #ffb7ce; 
+    margin-bottom: 3px; 
+}
+
+/* 🏨 入力エリアを少しだけ目立たせる */
+.input-group input {
+    background-color: white; /* 💡 入力欄は白くして読みやすく */
+    border: 2px solid #fabdc7;
+    border-radius: 10px;
+    padding: 8px;
+    color: #ff85a1;
+}
+
+.update-btn {
+    /*👇形とサイズーーーーーーーーーーーーーーーーーー👇*/
+    width: 25%;                     /*ボタンの横幅*/
+    padding:5px;                    /*文字とフチの間のゆとり*/
+    border-radius: 40px;            /*角を丸くする*/
+    margin-top: 20px;
+    cursor: pointer;                /* マウスを乗せると指マークになる */
+    /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
+
+    /*👇見た目と立体感ーーーーーーーーーーーーーーーー👇*/
+    background-color: #fabdc7;
+    color: white;                 /*文字の色*/
+    font-size: 20px;                /*文字の大きさ*/
+    font-weight: bold;              /*文字の太さ*/
+    border: none;                   /*ブラウザが勝手につける黒い枠線を消す*/
+    box-shadow: 0 8px 0 #ffa3b8;  /*立体的な厚み */
+    /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
+
+    /*👇押した感覚ーーーーーーーーーーーーーーーーーー👇*/
+    transition: 0.1s;               /*ボタンを押したり離したりした時の動き*/
+    /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
+
+    /* (今の設定にこれらをプラス) */
+    display: block;
+    margin: 10px auto 40px; /* 上に10px、左右は自動（真ん中）、下に40px */
+}
+
+/*🟦ボタンを押したら沈む*/
+#update-btn:active {
+    /*👇下にずらす設定ーーーーーーーーーーーーーーーー👇*/
+    transform: translateY(4px); /*押した瞬間に4px下に動かす */
+    /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
+
+    /*👇厚みの調整ーーーーーーーーーーーーーーーーーー👇*/
+    box-shadow: 0 2px 0 #e8a2af;
+    /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
+}
+
+/* 📅 カレンダー2か月分を真ん中に並べる魔法 */
+.calendar-wrapper {
+    display: flex;
+    flex-direction: row;     /* 💡 横並びをキープ */
+    justify-content: center; /* 💡 これで2つまとめて真ん中に寄せる！ */
+    
+    /* 💡 カレンダー同士の隙間を少し狭く（例: 15px → 8px） */
+    gap: 15px; 
+    
+    width: 100%;
+    margin-top: 60px; /* 上との隙間を少し詰める */
+    padding: 20px;  /* 画面端との隙間 */
+    box-sizing: border-box;
+}
+
+.calendar-box {
+    background: white;
+    border: 3px solid #fabdc7;
+    border-radius: 15px;
+    padding: 30px; /* 💡 中の余白を少し詰める */
+    margin-top: -30px;
+
+    /* 💡 魔法：2つのカレンダーが画面幅（約320px〜）に収まるように幅を調整 */
+    /* 計算：(100% - 隙間8px) / 2 */
+    width: 52%; 
+    max-width: 200px; /* PCとかで広がりすぎないように */
+    
+    box-shadow: 0 5px 15px rgba(255, 183, 206, 0.2);
+    box-sizing: border-box;
+}
+
+/* 📅 カレンダーの表の設定 */
+.calendar-box table {
+    margin: 0 auto;       /* 💡 左右の余白を自動にして真ん中へ */
+    width: 100%;          /* 💡 箱いっぱいに広げる */
+    border-collapse: collapse;
+    /* 💡 【重要】各マスの幅を強制的に均等にする魔法 */
+    table-layout: fixed; 
+}
+
+/* 📅 曜日と数字のテキストを真ん中に寄せる */
+.calendar-box table td {
+    text-align: center; /* 💡 これが「真ん中」の合図！ */
+    padding: 5px !important;
+    vertical-align: middle;
+}
+
+/* 📅 月のタイトル（3月、4月）も真ん中に */
+.calendar-box h4 {
+    text-align: center;
 }
