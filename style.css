@@ -597,14 +597,23 @@ body.home-page {
 
 /*🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷*/
 
-/* 🏠 メインエリアの調整 */
-.home-main-content {
-    margin-top: -170px;    /* 看板としずくに被らないように下げる */
-    margin-bottom: 10px; /* 下の看板に被らないように */
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* 🏠 ホームページ（body）の設定を修正 */
+body.home-page {
+    background-color: #ffeff6;
+    margin: 0;
+    padding: 0;
     width: 100%;
+    min-height: 100vh; /* 💡 heightじゃなくmin-heightにすると、中身が増えても大丈夫！ */
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* 💡 ど真ん中（center）から「上から順（start）」に変更！ */
+    align-items: center;
+    
+    /* 💡 看板としずくに被らないように、上に大きな通り道を作る */
+    padding-top: 100px; 
+    /* 💡 下の看板にも被らないように余白を作る */
+    padding-bottom: 70px; 
 }
 
 /* 🖼️ ポラロイド風の白い額縁（サイズアップ版！） */
