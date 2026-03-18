@@ -1096,3 +1096,17 @@ body.go-page {
     flex-direction: column; /* 写真用は縦に並べる方が入力しやすいかも */
     gap: 8px;
 }
+
+/* 💡 デート入力欄を左右に並べる魔法 */
+.side-by-side {
+    display: flex;         /* 横に並べる */
+    justify-content: center; 
+    gap: 10px;            
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.side-by-side .input-group {
+    flex: 1;               /* 左右均等 */
+    max-width: 140px;      
+}

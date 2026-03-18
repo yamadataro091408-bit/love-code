@@ -95,15 +95,18 @@
         }
     }
 
-    // 🌸 画面にポラロイドを作る魔法
+// 🌸 画面にポラロイドを作る魔法
     function displayPhoto(data) {
         const gallery = document.getElementById('photo-gallery');
         const frame = document.createElement('div');
-        frame.className = 'photo-frame'; // style.cssに既にある設定を使うよ
+        frame.className = 'photo-frame'; 
         frame.style.marginBottom = "30px";
         
+        // 💡 ここで cleanImageUrl を使って、住所を「本物の画像」に変換するよ！
+        const finalUrl = cleanImageUrl(data.url);
+        
         frame.innerHTML = `
-            <img src="${data.url}" class="main-photo" style="display:block;">
+            <img src="${finalUrl}" class="main-photo" style="display:block;">
             <p class="photo-caption">${data.caption || 'No Title'}</p>
         `;
         gallery.appendChild(frame);
