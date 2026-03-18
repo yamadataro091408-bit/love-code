@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>go 💗</title>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="go-page">
+<header class="home-top-header">
+    <div class="home-header-content">
+        <span class="home-header-title">🎀Wish List🎀</span>
+    </div>
+    <button id="open-menu-btn" class="menu-open-button">MENU</button>
+</header>
+
+<div id="menu-modal" class="menu-overlay">
+    <div class="menu-window">
+        <h2 class="menu-title">Menu</h2>
+        <ul class="menu-list">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="date.html">Next Date</a></li>
+            <li><a href="lets-go.html" class="current">Wish List</a></li>
+            <li><a href="memories.html">Memories</a></li>
+            <li><a href="#">Goals</a></li>
+            <li><a href="#">Savings amount</a></li>
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+        <button id="close-btn" class="close-circle">×</button>
+    </div>
+</div>
+
+<main class="go-main">
+    <p class="countdown-label">行きたいところリスト</p>
+
+    <div class="input-card">
+        <input type="text" id="wish-input" placeholder="いろんなところ行こうね">
+        <button onclick="addWish()" class="add-btn">追加</button>
+    </div>
+
+    <div id="wish-list-container" class="wish-container">
+        </div>
+</main>
+
+
+<div class="bottom-lace"></div>
+<div class="bottom-header"></div>
+
+<script>
+    // 💡 さよちゃんが新しく作ってくれた魔法のトンネル（URL）
+    const API_URL = "https://script.google.com/macros/s/AKfycbx1lgMQZiy8JyfM9ewUIBhLfEmkRT_gVU--X5SNOnAMKaQhXVz9lFJLaBt2AvNYGtpK/exec";
+
+    // メニューの動き
+    const openBtn = document.getElementById('open-menu-btn');
+    const closeBtn = document.getElementById('close-btn');
+    const menuModal = document.getElementById('menu-modal');
+
+    openBtn.addEventListener('click', () => { menuModal.style.display = 'flex'; });
+    closeBtn.addEventListener('click', () => { menuModal.style.display = 'none'; });
+    menuModal.addEventListener('click', (e) => { if (e.target === menuModal) menuModal.style.display = 'none'; });
+    
+    // 🌸 ページを開いた時に、倉庫（スプレッドシート）から読み出す
+    window.onload = async function() {
+        const container = document.getElementById('wish-list-container');
+        container.innerHTML = "<p style='color:#ffb7ce; font-size:12px; text-align:center;'>二人の倉庫を確認中...💕</p>";
+        
+        try {
+            const response = await fetch(API_URL);
+            const savedWishes = await response.json();
+            
+            container.innerHTML = ""; 
+            // 倉庫のデータを表示（古い順に並んでいるので、表示時に工夫するよ）
+            savedWishes.forEach((data, index) => displayWish(data.wish, index));
+            
+            if (savedWishes.length === 0) {
+                container.innerHTML = "<p style='color:#ffb7ce; font-size:12px; text-align:center;'>まだリストが空っぽだよ！追加してみてね💗</p>";
+            }
+        } catch (e) {
+            container.innerHTML = "<p style='color:#ffb7ce; font-size:12px; text-align:center;'>読み込みに失敗しちゃった😢</p>";
+        }
+    };
+
+    // 🌸 リストを「倉庫」に追加する魔法
+    async function addWish() {
+        const input = document.getElementById('wish-input');
+        const wishText = input.value.trim();
+        if (!wishText) return;
+
+        const addBtn = document.querySelector('.add-btn');
+        addBtn.disabled = true;
+        addBtn.innerText = "送信中...";
+
+        try {
+            await fetch(API_URL, {
+                method: "POST",
+                body: JSON.stringify({ wish: wishText })
+            });
+            
+            input.value = "";
+            location.reload(); 
+        } catch (e) {
+            alert("送れなかったよ💦");
+            addBtn.disabled = false;
+            addBtn.innerText = "追加";
+        }
+    }
+
+    // 🌸 画面にカードを作る魔法
+    function displayWish(text, index) {
+        const container = document.getElementById('wish-list-container');
+        const card = document.createElement('div');
+        card.className = 'wish-card';
+        card.innerHTML = `
+            <span>・ ${text}</span>
+            <button class="delete-wish-btn" onclick="deleteWish(${index})">×</button>
+        `;
+        // 新しいものが一番上に来るように prepend
+        container.prepend(card);
+    }
+
+    // 🌸 倉庫（スプレッドシート）から消す魔法
+    async function deleteWish(index) {
+        if (!confirm("これをリストから消してもいいの？(ﾟдﾟ)")) return;
+
+        // 💡 1. 画面上のカードを特定して、ぬるっと消えるアニメをかける
+        const container = document.getElementById('wish-list-container');
+        const cards = container.getElementsByClassName('wish-card');
+        
+        // prependで逆順に並んでいるので、indexを使って正しいカードを選ぶよ
+        const targetCard = cards[cards.length - 1 - index];
+        if (targetCard) targetCard.classList.add('fade-out');
+
+        try {
+            // 💡 2. スプレッドシートに「削除」の命令を送る
+            await fetch(API_URL, {
+                method: "POST",
+                body: JSON.stringify({ 
+                    action: 'delete', 
+                    index: index 
+                })
+            });
+            
+            // 💡 3. アニメーションを待ってから更新
+            setTimeout(() => {
+                location.reload();
+            }, 400);
+        } catch (e) {
+            alert("消せなかったよ💦");
+        }
+    }
+</script>
+</body>
+</html>

@@ -9,10 +9,9 @@
 </head>
 
 <body class="home-page">
-
 <header class="home-top-header">
     <div class="home-header-content">
-        <span class="home-header-title">らぶめろぅ～</span>
+        <span class="home-header-title">🎀Home🎀</span>
     </div>
     <button id="open-menu-btn" class="menu-open-button">MENU</button>
 </header>
@@ -21,14 +20,14 @@
     <div class="menu-window">
         <h2 class="menu-title">Menu</h2>
         <ul class="menu-list">
-            <li><a href="home.html" class="current">ホーム</a></li>
-            <li><a href="#">次のデート</a></li>
-            <li><a href="#">行きたいところ</a></li>
-            <li><a href="#">思い出</a></li>
-            <li><a href="#">目標</a></li>
-            <li><a href="#">貯金</a></li>
-            <li><a href="#">プロフ</a></li>
-            <li><a href="#">お問い合わせ</a></li>
+            <li><a href="home.html" class="current">Home</a></li>
+            <li><a href="date.html">Next Date</a></li>
+            <li><a href="lets-go.html">Wish List</a></li> 
+            <li><a href="#">Memories</a></li>
+            <li><a href="#">Goals</a></li>
+            <li><a href="#">Savings</a></li>
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Contact</a></li>
         </ul>
         <button id="close-btn" class="close-circle">×</button>
     </div>
@@ -42,12 +41,14 @@
     </div>
 </main>
 <div class="anniversary-container">
-    <p class="anniversary-label">付き合って</p> 
+    <p class="anniversary-label">🎀 付き合って 🎀</p> 
     <p id="counter-text" class="anniversary-days">読み込み中...</p> 
-    <p class="love-status">💗なかよし💗</p></div>
+    <p class="love-status">ฅ^>ω<^ฅ</p></div>
 </div>
 <div class="bottom-lace"></div>
-<div class="bottom-header"></div>
+<div class="bottom-header">
+<span class="home-header-title">🐰 Love Mellow 🐻</span>
+</div>
 <script>
     const openBtn = document.getElementById('open-menu-btn');
     const closeBtn = document.getElementById('close-btn');
@@ -73,7 +74,7 @@
     function updateAnniversary() {
     // 📅 ここに「付き合った日」を入れてね！ (年, 月-1, 日)
     // ※月は 0から始まるから、3月なら「2」、10月なら「9」って書いてね！
-    const startDate = new Date(2023, 12, 24);
+    const startDate = new Date(2023, 11, 24);
 
     const now = new Date();
     

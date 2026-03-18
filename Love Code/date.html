@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>date 💗</title>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="date-page">
+<header class="home-top-header">
+    <div class="home-header-content">
+        <span class="home-header-title">🎀Next Date🎀</span>
+    </div>
+    <button id="open-menu-btn" class="menu-open-button">MENU</button>
+</header>
+
+<div id="menu-modal" class="menu-overlay">
+    <div class="menu-window">
+        <h2 class="menu-title">Menu</h2>
+        <ul class="menu-list">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="date.html" class="current">Next Date</a></li>
+            <li><a href="lets-go.html">Wish List</a></li>
+            <li><a href="memories.html">Memories</a></li>
+            <li><a href="#">Goals</a></li>
+            <li><a href="#">Savings amount</a></li>
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+        <button id="close-btn" class="close-circle">×</button>
+    </div>
+</div>
+
+<main class="date-main">
+    <p class="countdown-label">次のデートまで</p>
+    
+    <div class="countdown-card">
+        <p class="countdown-days"><span id="days-left">--</span>日</p>
+        <div class="booking-card">
+            <div class="booking-inputs">
+                <div class="input-group">
+                    <label>会える日💗</label>
+                    <input type="date" id="check-in">
+                </div>
+                <div class="input-group">
+                    <label>バイバイの日😢</label>
+                    <input type="date" id="check-out">
+                </div>
+            </div><button onclick="updateCountdown()" class="update-btn" id="update-btn">更新</button>
+        </div>
+        <div class="calendar-wrapper">
+            <div id="calendar-1" class="calendar-box">1月（仮）</div>
+            <div id="calendar-2" class="calendar-box">2月（仮）</div>
+        </div>
+    </div>
+</main>
+
+<div class="bottom-lace"></div>
+<div class="bottom-header">
+<span class="home-header-title">🐰 Love Mellow 🐻</span>
+</div>
+
+<script>
+    const openBtn = document.getElementById('open-menu-btn');
+    const closeBtn = document.getElementById('close-btn');
+    const menuModal = document.getElementById('menu-modal');
+
+    openBtn.addEventListener('click', () => { menuModal.style.display = 'flex'; });
+    closeBtn.addEventListener('click', () => { menuModal.style.display = 'none'; });
+
+    menuModal.addEventListener('click', (e) => {
+        if (e.target === menuModal) menuModal.style.display = 'none';
+    });
+
+    // 🌸 カレンダーの中身を自動で作る魔法
+function createCalendar(id, year, month) {
+    const wrapper = document.getElementById(id);
+    if (!wrapper) return;
+
+    // 🏨 選ばれているデート期間を取得
+    const checkInVal = document.getElementById('check-in').value;
+    const checkOutVal = document.getElementById('check-out').value;
+    const checkInDate = checkInVal ? new Date(checkInVal).setHours(0,0,0,0) : null;
+    const checkOutDate = checkOutVal ? new Date(checkOutVal).setHours(0,0,0,0) : null;
+
+    const date = new Date(year, month, 1);
+    const monthName = (month + 1) + "月"; 
+    
+    let html = `<h4>${monthName}</h4>`;
+    html += '<table>';
+    html += '<tr><td style="color:#ff4d4d;">日</td><td>月</td><td>火</td><td>水</td><td>木</td><td>金</td><td style="color:#4d94ff;">土</td></tr><tr>';
+
+    for (let i = 0; i < date.getDay(); i++) { html += '<td></td>'; }
+
+    const currentMonth = date.getMonth();
+    const today = new Date().setHours(0,0,0,0);
+
+    while (date.getMonth() === currentMonth) {
+        if (date.getDay() === 0 && date.getDate() !== 1) { html += '</tr><tr>'; }
+
+        const currentTime = date.getTime();
+        
+        // 🎨 デート期間中かチェック
+        let dateClass = "";
+        if (checkInDate && checkOutDate) {
+            if (currentTime >= checkInDate && currentTime <= checkOutDate) {
+                dateClass = "class='date-highlight'";
+            }
+        } else if (checkInDate && currentTime === checkInDate) {
+            dateClass = "class='date-highlight'";
+        }
+
+        // 曜日ごとの色
+        let color = "#555"; 
+        if (date.getDay() === 0) color = "#ff4d4d"; 
+        if (date.getDay() === 6) color = "#4d94ff"; 
+
+        // 今日だけ丸をつける
+        let bgStyle = (currentTime === today) ? "background:#ffdbed; border-radius:50%;" : "";
+
+        html += `<td ${dateClass} style="color:${color}; ${bgStyle}">${date.getDate()}</td>`;
+        date.setDate(date.getDate() + 1);
+    }
+    html += '</tr></table>';
+    wrapper.innerHTML = html;
+}
+// 🌸 ページを開いた時に「記憶」を呼び出す魔法
+window.onload = function() {
+    const today = new Date();
+    
+    // 1. カレンダーを表示
+    createCalendar('calendar-1', today.getFullYear(), today.getMonth());
+    createCalendar('calendar-2', today.getFullYear(), today.getMonth() + 1);
+
+    // 2. 貯金箱から日付を読み出す
+    const savedCheckIn = localStorage.getItem('myDate_checkIn');
+    const savedCheckOut = localStorage.getItem('myDate_checkOut');
+
+    // 3. もし記憶があったら、入力欄に入れて再計算する
+    if (savedCheckIn) {
+        document.getElementById('check-in').value = savedCheckIn;
+        if (savedCheckOut) document.getElementById('check-out').value = savedCheckOut;
+        updateCountdown(); // 💗マークと残り日数を自動で出す
+    }
+};
+
+// 🌸 「更新」ボタンを押した時に「記憶」させる魔法
+function updateCountdown() {
+    const checkIn = document.getElementById('check-in').value;
+    const checkOut = document.getElementById('check-out').value;
+
+    if (!checkIn) {
+        alert("日付を選んでね！💗");
+        return;
+    }
+
+    // 🌟 貯金箱に保存する！
+    localStorage.setItem('myDate_checkIn', checkIn);
+    localStorage.setItem('myDate_checkOut', checkOut);
+
+    const targetDate = new Date(checkIn);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    targetDate.setHours(0, 0, 0, 0);
+
+    const diffTime = targetDate - today;
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+    const display = document.getElementById('days-left');
+    // 🌸 updateCountdown 関数の中を探してね
+if (diffDays > 0) {
+    // 💡 ここ！ innerText をこれに書き換えるよ
+    display.innerHTML = `<small style="font-size: 0.5em; vertical-align: middle; margin-right: 5px;">あと</small>${diffDays}`;
+} else if (diffDays === 0) {
+    display.innerText = "今日だよ！💗";
+}
+
+    // カレンダーをハート付きで描き直す
+    const current = new Date();
+    createCalendar('calendar-1', current.getFullYear(), current.getMonth());
+    createCalendar('calendar-2', current.getFullYear(), current.getMonth() + 1);
+}
+</script>
+</body>
+</html>

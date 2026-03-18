@@ -210,8 +210,8 @@ body.login-page {
     /*👇余白の設定ーーーーーーーーーーーーーーーーーー👇*/
     /*margin；外側の隙間*/
     /*padding：内側の隙間*/
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
 
     /*！画像は上下で好きなもの入れられるようにした！*/
@@ -278,7 +278,7 @@ h1 {
     /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
 
     /*👇フォントの設定ーーーーーーーーーーーーーーーー👇*/
-    font-size: 26px;
+    font-size: 25px;
     /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
 
     /*👇下のパーツとの距離ーーーーーーーーーーーーーー👇*/
@@ -299,7 +299,6 @@ input[type="text"]#pass-field {
     font-size: 16px;             /**入力する文字の大きさ*/
     text-align: center;
     outline: none;               /* クリックした時の青い枠線を消すよ */
-    -webkit-text-security: disc; /* パスワード入力を●にする魔法（WebKitブラウザ用） */
     ime-mode: active;      /* 日本語入力を最初からオンにする設定 */
     /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
 
@@ -326,7 +325,6 @@ input[type="text"]#pass-field {
     font-size: 20px;                /*文字の大きさ*/
     font-weight: bold;              /*文字の太さ*/
     border: none;                   /*ブラウザが勝手につける黒い枠線を消す*/
-    box-shadow: 0 8px 0 #ffa3b8;  /*立体的な厚み */
     /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
 
     /*👇押した感覚ーーーーーーーーーーーーーーーーーー👇*/
@@ -350,6 +348,7 @@ input[type="text"]#pass-field {
     /*👇色とサイズーーーーーーーーーーーーーーーーーー👇*/
     color: #ffb7ce;
     font-size: 14px;
+    margin-top: 5px;
     /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
 }
 /*🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷ー🩷*/
@@ -611,7 +610,7 @@ body.home-page {
     align-items: center;
     
     /* 💡 看板としずくに被らないように、上に大きな通り道を作る */
-    padding-top: 100px; 
+    padding-top: 120px; 
     /* 💡 下の看板にも被らないように余白を作る */
     padding-bottom: 70px; 
 }
@@ -623,7 +622,7 @@ body.home-page {
     border-radius: 12px;
 
     /* 💡 魔法：幅と高さを大きくしたよ！ */
-    width: 320px;  /* 280px から 320px にアップ！ */
+    width: 360px;  /* 280px から 320px にアップ！ */
     height: 350px; /* 340px から 400px にアップ！ */
 
     display: flex;
@@ -638,7 +637,7 @@ body.home-page {
     width: 100%;
     
     /* 💡 魔法：写真部分の高さも 300px にアップ！ */
-    height: 300px; 
+    height: 350px; 
     
     /* 💡 写真を歪ませずにきれいに切り抜く魔法（これは必須！） */
     object-fit: cover; 
@@ -687,6 +686,7 @@ body.home-page {
     color: #ffb7ce;
     font-size: 30px;
     font-weight: bold;
+    padding-top: 25px;
 }
 
 /* 2行目：〇年〇か月〇日 */
@@ -700,6 +700,399 @@ body.home-page {
 /* 3行目：なかよし */
 .love-status {
     color: #ffb7ce;
-    font-size: 14px;
+    font-size: 20px;
     letter-spacing: 2px;
+}
+
+/*ーーーーーーーー*/
+/*🟥date.html🟥*/
+/*ーーーーーーーー*/
+
+
+/*🟦背景*/
+body.date-page {
+    /*👇背景の色ーーーーーーーーーーーーーーーーーーー👇*/
+    background-color: #ffeff6;
+    /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
+
+    /*👇画面の上下左右、どこにも隙間がないピンクの空間👇*/
+    margin: 0;     /*外側の余白をゼロに*/
+    padding: 0;    /*内側の余白をゼロに*/
+    width: 100%;   /*横幅をいっぱいに*/
+    height: 100vh; /*高さを画面に合わせる*/
+    /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
+
+    overflow: hidden; /* 💡 画面からはみ出さないように念のためのお守り */
+
+    /*👇Flexboxー自動で真ん中寄せ・整列ーセットーーー👇*/
+    display: flex;           /*レイアウトの自由な並べ替えできるようになる */
+    flex-direction: column;   /* 💡 中身を「縦」に並べる魔法 */
+    justify-content: flex-start; /*左右（横）のど真ん中に並べる*/
+    align-items: center;     /*上下（縦）のど真ん中に並べる*/
+    padding-top: 20px;
+    align-items: center;     /*上下（縦）のど真ん中に並べる*/ 
+    gap: 0px;               /* 💡 各パーツの間のスキマ */
+    /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
+
+    /* 💡 看板としずくに被らないように、上に大きな通り道を作る */
+    padding-top: 130px; 
+    /* 💡 下の看板にも被らないように余白を作る */
+    padding-bottom: 20px;
+
+    /*👇白い水玉模様（ドット）をつくるーーーーーーーー👇*/
+    /*radial-gradient：円形のグラデーション*/
+    /*#ffffff 20%：白い水玉模様の水玉の部分*/
+    /*transparent 20%：透明な部分。これによって背景のピンクが見える*/
+    background-image: radial-gradient(#ffffff 20%, transparent 20%);
+    background-size: 30px 30px;   /*水玉模様の大きさ 上下、左右*/
+    background-position: center;  /*水玉模様のスタート位置　真ん中から*/
+    background-repeat: repeat;    /*水玉模様を縦にも横にも繰り返す*/
+    background-attachment: fixed; /*画面に固定してスクロールしても動かないようにする*/
+    /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
+}
+
+.countdown-label {
+    font-size: 35px; /* 💡 50pxは大きすぎたから、少し小さくしてスペース確保 */
+    margin-top: 45px;
+    margin-bottom: 10px;
+    text-align: center;
+    color: #ffb7ce; 
+    font-weight: bold; 
+}
+
+/* 📒 カードの枠を消して、中身の並びだけを整えるよ */
+.countdown-card {
+    background: transparent; /* 💡 背景を透明に！ */
+    border: none;             /* 💡 二重線を消す！ */
+    box-shadow: none;         /* 💡 影も消す！ */
+    
+    width: 95%;
+    max-width: 600px;
+    padding: 0;               /* 余白をゼロにしてスッキリ */
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* 📒 カウントダウン部分 */
+.countdown-days {
+    font-size: 40px; /* 💡 48pxから少しだけ小さく */
+    margin-bottom: 5px;
+}
+
+.countdown-days {
+    color: #ff85a1;
+    font-size: 48px;
+    margin-top: -15px;
+    font-weight: bold;
+}
+
+/* 📒 入力エリアをまとめる白いカード */
+.booking-card {
+    background: white;
+    border: 3px solid #fabdc7;
+    border-radius: 25px;
+    padding: 20px 15px;
+    width: 90%;
+    max-width: 400px;
+    margin: 0px auto; /* 真ん中に寄せる */
+    box-shadow: 0 8px 20px rgba(255, 183, 206, 0.2);
+    text-align: center;
+}
+
+/* カードの中の入力欄の並びを整える */
+.booking-inputs {
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+/* 更新ボタンをカードに馴染ませる */
+.booking-card .update-btn {
+    margin: 0 auto;
+    width: 25%; /* カードの中なので少し小さめに */
+    height: 40px;
+    font-size: 18px;
+}
+
+/* 🏨 ホテル予約風の入力エリア */
+.booking-inputs {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 10px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+}
+
+.input-group { 
+    width: 125px;
+    display: flex; 
+    flex-direction: column; 
+    text-align: center; 
+    margin-top: -3%;
+}
+
+.input-group label { 
+    font-size: 10px; 
+    color: #ffb7ce; 
+    margin-bottom: 3px; 
+}
+
+/* 🏨 入力エリアを少しだけ目立たせる */
+.input-group input {
+    background-color: white; /* 💡 入力欄は白くして読みやすく */
+    border: 2px solid #fabdc7;
+    border-radius: 10px;
+    padding: 8px;
+    color: #ff85a1;
+}
+
+.update-btn {
+    /*👇形とサイズーーーーーーーーーーーーーーーーーー👇*/
+    width: 15%;                     /*ボタンの横幅*/
+    padding: 5px;                    /*文字とフチの間のゆとり*/
+    border-radius: 12px;            /*角を丸くする*/
+    margin-top: 20px;
+    cursor: pointer;                /* マウスを乗せると指マークになる */
+    /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
+
+    /*👇見た目と立体感ーーーーーーーーーーーーーーーー👇*/
+    background-color: #fabdc7;
+    color: white;                 /*文字の色*/
+    font-size: 20px;                /*文字の大きさ*/
+    font-weight: bold;              /*文字の太さ*/
+    border: none;                   /*ブラウザが勝手につける黒い枠線を消す*/
+    /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
+
+    /*👇押した感覚ーーーーーーーーーーーーーーーーーー👇*/
+    transition: 0.1s;               /*ボタンを押したり離したりした時の動き*/
+    /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
+
+    /* (今の設定にこれらをプラス) */
+    display: block;
+    margin: 10px auto 40px; /* 上に10px、左右は自動（真ん中）、下に40px */
+}
+
+/*🟦ボタンを押したら沈む*/
+#update-btn:active {
+    /*👇下にずらす設定ーーーーーーーーーーーーーーーー👇*/
+    transform: translateY(4px); /*押した瞬間に4px下に動かす */
+    /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
+
+    /*👇厚みの調整ーーーーーーーーーーーーーーーーーー👇*/
+    box-shadow: 0 2px 0 #e8a2af;
+    /*🟨ーーーーーーーーーーーーーーーーーーーーーーー🟨*/
+}
+
+/* 📅 カレンダー2か月分を並べる外枠 */
+.calendar-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    margin-top: 30px;
+    padding: 0 10px;
+}
+
+/* 📒 カレンダー1ヶ月分の白い箱 */
+.calendar-box {
+    background: white;
+    border: 3px solid #fabdc7;
+    border-radius: 20px;
+    padding: 15px 10px;
+    width: 48%;
+    max-width: 180px;
+}
+
+/* 📅 月のタイトル（3月、4月） */
+.calendar-box h4 {
+    text-align: center;
+    color: #ff85a1;
+    font-size: 16px;
+    margin-bottom: 10px;
+    border-bottom: 2px dashed #ffeff6;
+    padding-bottom: 5px;
+}
+
+/* 📅 テーブルの設定 */
+.calendar-box table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed; /* 💡 これで列の幅が全部均等になるよ！ */
+}
+
+/* 📅 曜日と数字のマス */
+.calendar-box table td {
+    text-align: center;
+    vertical-align: middle;
+    padding: 5px 0 !important;
+    font-size: 13px; /* 💡 数字を大きくして見やすく！ */
+    font-weight: bold;
+}
+
+/* 曜日の行だけ色を変える */
+.calendar-box table tr:first-child td {
+    font-size: 10px;
+    padding-bottom: 8px !important;
+}
+
+/* 💖 デート期間中の日にちを可愛くする */
+.date-highlight {
+    background-color: #ffeff6; /* 薄いピンクの背景 */
+    border-radius: 10px;
+    position: relative;
+    color: #ff85a1 !important;
+}
+
+/* 🎀 数字の下に小さく「デート💗」って入れる */
+.date-highlight::after {
+    content: "💗";
+    position: absolute;
+    bottom: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 6px; /* スマホで見えるギリギリの小ささ */
+    white-space: nowrap;
+    font-weight: bold;
+}
+
+/*ーーーーーーーーー*/
+/*🟥lets-go.html🟥*/
+/*ーーーーーーーーー*/
+
+/* 🟥go.html専用の背景 */
+body.go-page {
+    background-color: #ffeff6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 130px; /* 看板の下から */
+    padding-bottom: 100px;
+    /* 水玉背景（共通） */
+    background-image: radial-gradient(#ffffff 20%, transparent 20%);
+    background-size: 30px 30px;
+    background-attachment: fixed;
+}
+
+.go-label {
+    font-size: 35px; /* 💡 50pxは大きすぎたから、少し小さくしてスペース確保 */
+    margin-top: 45px;
+    margin-bottom: 10px;
+    text-align: center;
+    color: #ffb7ce; 
+    font-weight: bold;
+}
+
+/* 💌 入力エリアのカード */
+.input-card {
+    background: white;
+    width: 95%;          /* 💡 画面幅に合わせて少し広げる */
+    max-width: 400px;
+    padding: 15px;
+    border-radius: 20px;
+    border: 3px solid #fabdc7;
+    display: flex;
+    gap: 10px;
+    margin: 0 auto 30px; /* 💡 左右を「auto」にすると真ん中に寄る魔法！ */
+    box-shadow: 0 5px 15px rgba(250, 189, 199, 0.2);
+}
+
+.input-card input {
+    flex: 1; /* 💡 入力欄をできるだけ長くする */
+    border: 2px solid #ffeff6;
+    border-radius: 12px;
+    padding: 10px;
+    outline: none;
+    color: #ff85a1;
+    font-weight: bold;
+    text-align: center;
+}
+
+.add-btn {
+    background: #fabdc7;
+    color: white;
+    border: none;
+    padding: 0 15px;
+    border-radius: 12px;
+    font-weight: bold;
+}
+
+/* 🎀 溜まっていくリストのカード */
+.wish-container {
+    width: 95%;          /* 💡 入力欄と同じ幅に合わせる */
+    max-width: 400px;
+    margin: 0 auto;      /* 💡 これでコンテナ自体が真ん中に来る！ */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 💡 中のカードも真ん中に揃える */
+    gap: 10px;
+}
+
+.wish-card {
+    background: white;
+    width: 100%;         /* 💡 コンテナの幅いっぱいに広げる */
+    padding: 15px 20px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #ff85a1;
+    font-weight: bold;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+}
+
+@keyframes slideIn {
+    0% {opacity: 0;transform: translateY(-20px) scale(0.9); /* 上からふわっと */}
+    100% {opacity: 1;transform: translateY(0) scale(1);}
+}
+
+/* 🪄 消える時の「ぬるっ」とした動き */
+.fade-out {
+    animation: slideOut 0.4s ease-in forwards !important;
+}
+
+@keyframes slideOut {
+    0% {opacity: 1;transform: translateX(0);}
+    100% {opacity: 0;transform: translateX(30px); /* 右に滑りながら消える */}
+}
+
+/* ❌ 削除ボタン */
+.delete-wish-btn {
+    background: #ffeff6;
+    color: #ffb7ce;
+    border: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    font-size: 14px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.2s;
+}
+
+.delete-wish-btn:hover {
+    background: #fabdc7;
+    color: white;
+}
+
+
+
+/* 📷 ギャラリー全体の並び */
+.gallery-container {
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding-bottom: 50px;
+}
+
+/* 🖋 入力カードを写真用に調整（URLとメモを並べる） */
+.input-card {
+    flex-direction: column; /* 写真用は縦に並べる方が入力しやすいかも */
+    gap: 8px;
 }

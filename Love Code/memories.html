@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>go 💗</title>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="go-page">
+<header class="home-top-header">
+    <div class="home-header-content">
+        <span class="home-header-title">🎀Memories🎀</span>
+    </div>
+    <button id="open-menu-btn" class="menu-open-button">MENU</button>
+</header>
+
+<div id="menu-modal" class="menu-overlay">
+    <div class="menu-window">
+        <h2 class="menu-title">Menu</h2>
+        <ul class="menu-list">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="date.html">Next Date</a></li>
+            <li><a href="lets-go.html">Wish List</a></li>
+            <li><a href="memories.html" class="current">Memories</a></li>
+            <li><a href="#">Goals</a></li>
+            <li><a href="#">Savings amount</a></li>
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+        <button id="close-btn" class="close-circle">×</button>
+    </div>
+</div>
+
+<main>
+    <p class="go-label">二人の思い出アルバム</p>
+
+    <div class="input-card">
+        <input type="text" id="photo-url" placeholder="画像のURLを貼ってね💗">
+        <input type="text" id="photo-caption" placeholder="一言メモ📝">
+        <button onclick="addPhoto()" class="add-btn">保存</button>
+    </div>
+
+    <div id="photo-gallery" class="gallery-container">
+        </div>
+</main>
+
+<div class="bottom-lace"></div>
+<div class="bottom-header"></div>
+
+<script>
+    // 💡 さよちゃんが今発行してくれたURLに書き換えたよ！
+    const PHOTO_API_URL = "https://script.google.com/macros/s/AKfycbxnX1GNBk0Tg-cncCDjID4RJQJAiMTWrhCJRlzICHnEJ-1osGg09cYQ_UEU_o2lhzlY/exec";
+
+    // メニューの基本設定
+    const openBtn = document.getElementById('open-menu-btn');
+    const closeBtn = document.getElementById('close-btn');
+    const menuModal = document.getElementById('menu-modal');
+    openBtn.onclick = () => menuModal.style.display = 'flex';
+    closeBtn.onclick = () => menuModal.style.display = 'none';
+
+    // 🌸 ページを開いた時に写真を読み込む
+    window.onload = async function() {
+        const gallery = document.getElementById('photo-gallery');
+        gallery.innerHTML = "<p style='color:#ffb7ce;'>アルバムを開いています...💕</p>";
+        
+        try {
+            const response = await fetch(PHOTO_API_URL);
+            const photos = await response.json();
+            gallery.innerHTML = ""; 
+            photos.reverse().forEach(data => displayPhoto(data));
+        } catch (e) {
+            gallery.innerHTML = "<p style='color:#ffb7ce;'>読み込みに失敗しちゃった😢</p>";
+        }
+    };
+
+    // 🌸 写真を保存する魔法
+    async function addPhoto() {
+        const urlInput = document.getElementById('photo-url');
+        const capInput = document.getElementById('photo-caption');
+        const url = urlInput.value.trim();
+        const caption = capInput.value.trim();
+
+        if (!url) return alert("画像のURLを入れてね！");
+
+        try {
+            await fetch(PHOTO_API_URL, {
+                method: "POST",
+                body: JSON.stringify({ url: url, caption: caption })
+            });
+            location.reload(); 
+        } catch (e) {
+            alert("保存できなかったよ💦");
+        }
+    }
+
+    // 🌸 画面にポラロイドを作る魔法
+    function displayPhoto(data) {
+        const gallery = document.getElementById('photo-gallery');
+        const frame = document.createElement('div');
+        frame.className = 'photo-frame'; // style.cssに既にある設定を使うよ
+        frame.style.marginBottom = "30px";
+        
+        frame.innerHTML = `
+            <img src="${data.url}" class="main-photo" style="display:block;">
+            <p class="photo-caption">${data.caption || 'No Title'}</p>
+        `;
+        gallery.appendChild(frame);
+    }
+
+    // 🌸 Googleフォトなどのリンクを、画像として表示できる形式に変換する魔法
+function cleanImageUrl(url) {
+    if (url.includes("photos.app.goo.gl")) {
+        // Googleフォトの共有リンクは特殊なので、
+        // 今回は「リンク」として表示するか、別の保存方法を考える必要があるかも！
+        return url; 
+    }
+    if (url.includes("drive.google.com")) {
+        // GoogleドライブのURLを直リンクに変換する魔法！
+        return url.replace("/file/d/", "/uc?export=view&id=").replace("/view?usp=sharing", "");
+    }
+    return url;
+}
+
+// 🌸 displayPhoto関数の中で使うよ
+function displayWish(text, index) {
+    // ... 前のコード ...
+    // <img src="${cleanImageUrl(data.url)}"> みたいに使うと動くよ！
+}
+</script>
+</body>
+</html>
